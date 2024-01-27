@@ -1,4 +1,3 @@
-using System.Transactions;
 using UnityEngine;
 
 public interface IRoleBase
@@ -6,6 +5,7 @@ public interface IRoleBase
     public MoveState current { get; set; }
     public MoveState next { get; set; }
     public Train train { get; set; }
+    public Transform t => (this as MonoBehaviour).transform;
 
     public void Tick(float dt);
 
