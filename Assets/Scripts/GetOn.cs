@@ -39,7 +39,7 @@ public class GetOn : MonoBehaviour
                 var dir = getDirection(line, false);
                 if (dir != Vector3.zero)
                 {
-                    var angle = Vector3.Angle(inputManager.direction, dir);
+                    var angle = Vector3.Angle(new Vector3(inputManager.direction.x, 0, inputManager.direction.y), dir);
                     if (angle < marchAngle && angle > -marchAngle)
                     {
                         player.SetNext(line, false);
@@ -49,7 +49,7 @@ public class GetOn : MonoBehaviour
                 dir = getDirection(line, true);
                 if (dir != Vector3.zero)
                 {
-                    var angle = Vector3.Angle(inputManager.direction, getDirection(line, true));
+                    var angle = Vector3.Angle(new Vector3(inputManager.direction.x, 0, inputManager.direction.y), getDirection(line, true));
                     if (angle < marchAngle && angle > -marchAngle)
                     {
                         player.SetNext(line, true);
@@ -75,7 +75,7 @@ public class GetOn : MonoBehaviour
                 nextIndex = (nextIndex + line.stations.Count) % line.stations.Count;
             }
             else
-                return Vector2.zero;
+                return Vector3.zero;
         }
         var nextStation = line.stations[nextIndex];
         return nextStation.transform.position - player.station.transform.position;
