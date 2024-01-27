@@ -29,6 +29,8 @@ public class FlashBack : Skill
                 // policeman.current.station = policeBeacon.station;
 
                 // policeBeacon.Set(policeman.current.station, roleId);
+                (policeman as IRoleBase).GetOff(policeBeacon.station);
+                policeBeacon.enabled = false;
             }
             return true;
         }

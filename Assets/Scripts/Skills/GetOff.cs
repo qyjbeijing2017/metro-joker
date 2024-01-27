@@ -24,7 +24,6 @@ public class GetOff : Skill
             if (jocker.gameObject == gameObject) continue;
             if (Vector3.Distance(transform.position, jocker.transform.position) < getOffDistance)
             {
-                // Todo: get off
                 jocker.next.stay = true;
             }
         }
