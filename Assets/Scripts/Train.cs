@@ -9,31 +9,30 @@ public class Train : MonoBehaviour
     public Transform child;
     public List<IRoleBase> roles = new();
 
-    public MoveState _c;
+    // public MoveState _c;
 
-    private MoveState current
-    {
-        get => _c;
-        set
-        {
-            _c = value;
-            Debug.Log("set current " + value);
-        }
-    }
+    private MoveState current;
+    // {
+    //     get => _c;
+    //     set
+    //     {
+    //         _c = value;
+    //         // Debug.Log("set current " + value);
+    //     }
+    // }
 
     private Vector3 posCur;
 
-    public MoveState _n;
+    // public MoveState _n;
 
-    private MoveState next
-    {
-        get => _n;
-        set
-        {
-            _n = value;
-            Debug.Log("set next " + value);
-        }
-    }
+    private MoveState next;
+    // {
+    //     get => _n;
+    //     set
+    //     {
+    //         _n = value;
+    //         // Debug.Log("set next " + value);
+    //     }
 
     public Vector3 posNext;
     public float distance;
@@ -50,7 +49,7 @@ public class Train : MonoBehaviour
         CacheDistanceAndDirection();
         speed = line.trainSpeed;
         speedMultiplier = line.trainSpeedMultiplier;
-        Debug.Log($"Spawn on station {start.station.name}");
+        // Debug.Log($"Spawn on station {start.station.name}");
         transform.position = current.station.transform.position;
         onReachStation.RemoveAllListeners();
     }
@@ -118,7 +117,7 @@ public class Train : MonoBehaviour
                         reverse = false,
                         stay = false,
                     };
-                    Debug.Log($"MockDistance Cur {current.station.name} Next {next.station.name}");
+                    // Debug.Log($"MockDistance Cur {current.station.name} Next {next.station.name}");
                     CacheDistanceAndDirection();
                     return;
                 }
@@ -248,7 +247,8 @@ public class Train : MonoBehaviour
 
     private void KickAllPassengers()
     {
-        foreach (var p in roles)
+        var r = roles.ToArray();
+        foreach (var p in r)
         {
             p.EnterStation(current.station);
         }

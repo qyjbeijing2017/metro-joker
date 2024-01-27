@@ -5,11 +5,14 @@ using UnityEngine;
 public class Station : MonoBehaviour
 {
     public bool isStuck { private set; get; } = false;
-    public HashSet<Line> lines = new();
+    public List<Line> lines = new();
     public List<IRoleBase> roles = new();
 
     public void AddLine(Line line)
     {
+        if (lines.Contains(line))
+            return;
+
         lines.Add(line);
     }
 
