@@ -7,6 +7,7 @@ public class GamePlay : MonoBehaviour
 {
     private List<Jocker> jokers;
     private List<Policeman> police;
+    private List<Task> tasks;
 
 
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class GamePlay : MonoBehaviour
     {
         jokers = new List<Jocker>(FindObjectsOfType<Jocker>());
         police = new List<Policeman>(FindObjectsOfType<Policeman>());
+        tasks = new List<Task>(FindObjectsOfType<Task>());
     }
 
     // Update is called once per frame
