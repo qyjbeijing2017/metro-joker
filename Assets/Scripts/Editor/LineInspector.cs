@@ -11,6 +11,8 @@ public class LineInspector : Editor
         // add button
         if (GUILayout.Button("填充站点数据和路径"))
         {
+            ObjectPool.Collect<Train>("train");
+
             var stations = GameObject.FindObjectsOfType<Station>();
             foreach (var s in stations)
             {
@@ -43,10 +45,22 @@ public class LineInspector : Editor
         var distanceBetweenTrains = l.timeGap * l.trainSpeed;
         // add all distances between stations
         var totalDistance = 0f;
-        for (var i = 0; i < l.stations.Count - 1; i++)
+        Station[] stationArr;
+        if (l.isRing)
         {
-            var s1 = l.stations[i];
-            var s2 = l.stations[i + 1];
+            stationArr = new Station[l.stations.Count + 1];
+            l.stations.CopyTo(stationArr);
+            stationArr[^1] = stationArr[0];
+        }
+        else
+        {
+            stationArr = l.stations.ToArray();
+        }
+
+        for (var i = 0; i < stationArr.Length - 1; i++)
+        {
+            var s1 = stationArr[i];
+            var s2 = stationArr[i + 1];
             var distance = Vector3.Distance(s1.transform.position, s2.transform.position);
             totalDistance += distance;
         }
@@ -61,7 +75,7 @@ public class LineInspector : Editor
                 station = l.stations[0],
                 reverse = false,
             });
-            t.MockDistance(i * distanceBetweenTrains, false);
+            t.MockDistance(i * distanceBetweenTrains, stationArr, false);
         }
 
         for (int i = 0; i < count; i++)
@@ -73,7 +87,7 @@ public class LineInspector : Editor
                 station = l.stations[^1],
                 reverse = true,
             });
-            t.MockDistance(i * distanceBetweenTrains, true);
+            t.MockDistance(i * distanceBetweenTrains, stationArr, true);
         }
     }
 }

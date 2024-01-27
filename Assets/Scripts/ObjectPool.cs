@@ -5,17 +5,23 @@ public class ObjectPool
 {
     private static Dictionary<string, Stack<MonoBehaviour>> pools = new();
 
-    public static void InitPool<T>(string key, T target, int count) where T : MonoBehaviour
+    private static Transform tPoolRoot;
+
+    private static Transform GetPoolRoot()
     {
-        if (!pools.ContainsKey(key))
+        if (tPoolRoot == null)
         {
-            pools.Add(key, new Stack<MonoBehaviour>());
+            var mono = GameObject.FindObjectOfType<PoolRoot>(true);
+            if (mono == null)
+            {
+                var go = new GameObject("PoolRoot");
+                mono = go.AddComponent<PoolRoot>();
+            }
+
+            tPoolRoot = mono.transform;
         }
 
-        for (var i = 0; i < count; i++)
-        {
-            pools[key].Push(Object.Instantiate(target));
-        }
+        return tPoolRoot;
     }
 
     public static void Push<T>(string key, T target) where T : MonoBehaviour
@@ -26,6 +32,7 @@ public class ObjectPool
         }
 
         pools[key].Push(target);
+        target.transform.SetParent(GetPoolRoot());
         target.gameObject.SetActive(false);
     }
 
@@ -38,11 +45,26 @@ public class ObjectPool
 
         if (pools[key].Count == 0)
         {
-            return Object.Instantiate(Resources.Load<T>(key.ToLower()));
+            return Object.Instantiate(Resources.Load<T>(key.ToLower()), GetPoolRoot());
         }
 
         var pop = pools[key].Pop();
         pop.gameObject.SetActive(true);
         return pop as T;
+    }
+
+    // Find All Object in Scene, and push them into the pool
+    public static void Collect<T>(string key) where T : MonoBehaviour
+    {
+        if (!pools.ContainsKey(key))
+        {
+            pools.Add(key, new Stack<MonoBehaviour>());
+        }
+
+        var objects = GameObject.FindObjectsOfType<T>(true);
+        foreach (var obj in objects)
+        {
+            Push(key, obj);
+        }
     }
 }
