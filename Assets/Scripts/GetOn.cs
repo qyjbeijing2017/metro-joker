@@ -70,7 +70,12 @@ public class GetOn : MonoBehaviour
         var nextIndex = index + (reverse ? -1 : 1);
         if (nextIndex < 0 || nextIndex >= line.stations.Count)
         {
-            return Vector2.zero;
+            if (line.isRing)
+            {
+                nextIndex = (nextIndex + line.stations.Count) % line.stations.Count;
+            }
+            else
+                return Vector2.zero;
         }
         var nextStation = line.stations[nextIndex];
         return nextStation.transform.position - player.station.transform.position;
