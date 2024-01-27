@@ -15,21 +15,13 @@ public class InputManager : MonoBehaviour
             return PlayerID;
         }
     }
+    [SerializeField]
+    private GamepadButton GetOnAxis;
 
     [SerializeField]
     private GamepadButton GetOffButton;
     [SerializeField]
     private GamepadButton SkillButton;
-
-    public Vector2 move{
-        get{
-            if(PlayerID + 1 > Gamepad.all.Count)
-            {
-                return Vector2.zero;
-            }
-            return Gamepad.all[PlayerID].leftStick.ReadValue();
-        }
-    }
 
     public Vector2 direction{
         get{
@@ -37,7 +29,12 @@ public class InputManager : MonoBehaviour
             {
                 return Vector2.zero;
             }
+            if(GetOnAxis == GamepadButton.LeftStick)
+            return Gamepad.all[PlayerID].leftStick.ReadValue();
+            else if(GetOnAxis == GamepadButton.RightStick)
             return Gamepad.all[PlayerID].rightStick.ReadValue();
+            else
+            return Vector2.zero;
         }
     }
 
@@ -64,18 +61,6 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if(getOff) {
-            Debug.Log("GetOff");
-        }
-        if(Skill) {
-            Debug.Log("Skill");
-        }
-        if(move != Vector2.zero) {
-            Debug.Log("Move");
-        }
-        if(direction != Vector2.zero) {
-            Debug.Log("Direction");
-        }
 
     }
 }

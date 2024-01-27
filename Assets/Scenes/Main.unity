@@ -793,6 +793,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8423446152348156602, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
   m_PrefabInstance: {fileID: 895196121}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &730764700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730764699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f640d712bc3447fad9bfc572cb9742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathArea: 0.5
+  marchAngle: 45
 --- !u!1 &740276017
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +940,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3622424762461470139, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
+      propertyPath: PlayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622424762461470139, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
+      propertyPath: GetOnAxis
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622424762461470139, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
+      propertyPath: SkillButton
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622424762461470139, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
+      propertyPath: GetOffButton
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7681865898714259535, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1397,14 +1427,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616973615}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1887681344
 GameObject:
   m_ObjectHideFlags: 0
