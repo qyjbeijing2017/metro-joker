@@ -11,7 +11,7 @@ public class Train : MonoBehaviour
 
     // public MoveState _c;
 
-    private MoveState current;
+    public MoveState current;
     // {
     //     get => _c;
     //     set
@@ -25,7 +25,7 @@ public class Train : MonoBehaviour
 
     // public MoveState _n;
 
-    private MoveState next;
+    public MoveState next;
     // {
     //     get => _n;
     //     set
@@ -46,9 +46,10 @@ public class Train : MonoBehaviour
         this.line = line;
         current = start;
         next = line.GetNextMoveState(start, out var state) ? state : null;
-        CacheDistanceAndDirection();
         speed = line.trainSpeed;
         speedMultiplier = line.trainSpeedMultiplier;
+        CacheDistanceAndDirection();
+        CollectPassengers();
         // Debug.Log($"Spawn on station {start.station.name}");
         transform.position = current.station.transform.position;
         onReachStation.RemoveAllListeners();
@@ -153,6 +154,7 @@ public class Train : MonoBehaviour
                         reverse = true,
                         stay = false,
                     };
+                    CacheDistanceAndDirection();
                     return;
                 }
 

@@ -42,8 +42,7 @@ public class GetOn : MonoBehaviour
                     var angle = Vector2.SignedAngle(inputManager.direction, dir);
                     if (angle < marchAngle && angle > -marchAngle)
                     {
-                        player.line = line;
-                        player.reverse = false;
+                        player.SetNext(line, false);
                         return;
                     }
                 }
@@ -53,8 +52,7 @@ public class GetOn : MonoBehaviour
                     var angle = Vector2.SignedAngle(inputManager.direction, getDirection(line, true));
                     if (angle < marchAngle && angle > -marchAngle)
                     {
-                        player.line = line;
-                        player.reverse = true;
+                        player.SetNext(line, true);
                         return;
                     }
                 }

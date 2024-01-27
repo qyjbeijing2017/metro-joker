@@ -35,8 +35,12 @@ public interface IRoleBase
     public void EnterTrain(Train train)
     {
         this.train = train;
-        station.RemoveRole(this);
-        EventManager.TriggerEvent(EventName.RoleLeaveStation, (station, this));
+        if (station != null)
+        {
+            station.RemoveRole(this);
+            EventManager.TriggerEvent(EventName.RoleLeaveStation, (station, this));
+        }
+
         train.AddRole(this);
         EventManager.TriggerEvent(EventName.RoleEnterTrain, (train, this));
         station = null;
@@ -53,7 +57,7 @@ public interface IRoleBase
     {
         this.line = line;
         this.reverse = reverse;
-        station = null;
+        // station = null;
         train = null;
         willStay = false;
     }

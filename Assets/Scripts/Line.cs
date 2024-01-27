@@ -105,7 +105,7 @@ public class Line : MonoBehaviour
             return false;
         }
 
-        Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
+        // Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
 
         if (curState.line != this)
         {
@@ -143,7 +143,7 @@ public class Line : MonoBehaviour
                 stay = false
             };
 
-            Debug.Log($"next stop {newState.station.name} {newState.reverse}");
+            // Debug.Log($"next stop {newState.station.name} {newState.reverse}");
 
             return true;
         }
@@ -156,7 +156,7 @@ public class Line : MonoBehaviour
             station = stations[isFirst ? curStationIndex + 1 : curStationIndex - 1]
         };
 
-        Debug.Log($"next stop {newState.station.name} {newState.reverse}");
+        // Debug.Log($"next stop {newState.station.name} {newState.reverse}");
         return true;
     }
 
@@ -169,7 +169,7 @@ public class Line : MonoBehaviour
             return false;
         }
 
-        Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
+        // Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
 
         if (curState.line != this)
         {
@@ -203,7 +203,7 @@ public class Line : MonoBehaviour
             stay = false
         };
 
-        Debug.Log($"next stop {newState.station.name} {newState.reverse}");
+        // Debug.Log($"next stop {newState.station.name} {newState.reverse}");
         return true;
     }
 }
