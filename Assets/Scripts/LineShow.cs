@@ -23,10 +23,4 @@ public class LineShow : MonoBehaviour
             lineRenderer.loop = true;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

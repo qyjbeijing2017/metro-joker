@@ -208,7 +208,7 @@ public class Train : MonoBehaviour
         var roles = current.station.GetRoles(next.line, next.reverse);
         foreach (var role in roles)
         {
-            role.GetOn(this);
+            role.EnterTrain(this);
         }
     }
 
@@ -241,7 +241,7 @@ public class Train : MonoBehaviour
             var p = roles[i];
             if (!p.willStay)
                 continue;
-            p.GetOff(current.station);
+            p.EnterStation(current.station);
         }
     }
 
@@ -249,7 +249,7 @@ public class Train : MonoBehaviour
     {
         foreach (var p in roles)
         {
-            p.GetOff(current.station);
+            p.EnterStation(current.station);
         }
     }
 }

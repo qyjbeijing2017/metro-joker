@@ -11,14 +11,19 @@ public interface IRoleBase
 
     public void Tick(float dt);
 
-    public void GetOff(Station station)
+    public void EnterStation(Station station)
     {
         this.station = station;
         station.AddRole(this);
+        EventManager.TriggerEvent(EventName.EnterStation, (station, this));
         line = null;
         reverse = false;
         if (train != null)
+        {
             train.RemoveRole(this);
+            EventManager.TriggerEvent(EventName.LeaveTrain, (train, this));
+        }
+
         train = null;
         willStay = true;
 
@@ -27,11 +32,13 @@ public interface IRoleBase
         trans.localPosition = Vector3.zero;
     }
 
-    public void GetOn(Train train)
+    public void EnterTrain(Train train)
     {
         this.train = train;
         station.RemoveRole(this);
+        EventManager.TriggerEvent(EventName.LeaveStation, (station, this));
         train.AddRole(this);
+        EventManager.TriggerEvent(EventName.EnterTrain, (train, this));
         station = null;
         line = null;
         reverse = false;

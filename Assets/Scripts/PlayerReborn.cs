@@ -12,7 +12,7 @@ public class PlayerReborn : MonoBehaviour
     void Start()
     {
         station = GetComponent<Station>();
-        player.GetComponent<IRoleBase>().GetOff(station);
+        player.GetComponent<IRoleBase>().EnterStation(station);
     }
 
     // Update is called once per frame
