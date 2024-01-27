@@ -2207,6 +2207,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Policeman2
       objectReference: {fileID: 0}
+    - target: {fileID: 449422833614053757, guid: f39179d7ed2364d5a8d4608e5bafad87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942201677802278173, guid: f39179d7ed2364d5a8d4608e5bafad87, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7264322035931368478, guid: f39179d7ed2364d5a8d4608e5bafad87, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -10512,6 +10520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jocker1
       objectReference: {fileID: 0}
+    - target: {fileID: 8423446152348156602, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
 --- !u!1 &758413235 stripped
@@ -17687,6 +17699,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3668735374023429859, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
+      propertyPath: catchDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311993581394164670, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
+      propertyPath: PlayerID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8872331059366339387, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -20156,6 +20176,14 @@ PrefabInstance:
     - target: {fileID: 1462918930898466306, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_Name
       value: Policeman3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462918930898466306, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907497625030173302, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5339156298954030917, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_RootOrder
@@ -23881,9 +23909,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7020258207188613852, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
+      propertyPath: PlayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8963295580407690369, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
       propertyPath: m_Name
       value: Jocker2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963295580407690369, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b8705f270664b57aba9c3752b39464, type: 3}

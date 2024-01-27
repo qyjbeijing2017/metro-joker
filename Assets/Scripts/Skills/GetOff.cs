@@ -6,24 +6,24 @@ public class GetOff : Skill
     [Range(0, 100)]
     private float getOffDistance = 10f;
 
-    private Jocker[] jockers;
+    private Policeman[] polices;
 
     void Start()
     {
         base.Start();
-        jockers = FindObjectsByType<Jocker>(FindObjectsSortMode.None);
+        polices = FindObjectsByType<Policeman>(FindObjectsSortMode.None);
     }
 
     public override bool UseSkill()
     {
 
-        foreach (Jocker jocker in jockers)
+        foreach (Policeman police in polices)
         {
-            if (jocker == null) continue;
-            if (jocker.gameObject == gameObject) continue;
-            if (Vector3.Distance(transform.position, jocker.transform.position) < getOffDistance)
+            if (police == null) continue;
+            if (police.gameObject == gameObject) continue;
+            if (Vector3.Distance(transform.position, police.transform.position) < getOffDistance)
             {
-                jocker.willStay = true;
+                police.willStay = true;
             }
         }
         return true;
