@@ -51,6 +51,7 @@ public class Train : MonoBehaviour
         CacheDistanceAndDirection();
         CollectPassengers();
         // Debug.Log($"Spawn on station {start.station.name}");
+        transform.SetParent(line.transform);
         transform.position = current.station.transform.position;
         onReachStation.RemoveAllListeners();
     }
@@ -88,15 +89,15 @@ public class Train : MonoBehaviour
         }
     }
 
-    public void MockDistance(float distance, bool reverse)
+    public void MockDistance(float distance, Station[] stations, bool reverse)
     {
         if (!reverse)
         {
             float totalDistance = 0;
-            for (var i = 0; i < line.stations.Count - 1; i++)
+            for (var i = 0; i < stations.Length - 1; i++)
             {
-                var s1 = line.stations[i];
-                var s2 = line.stations[i + 1];
+                var s1 = stations[i];
+                var s2 = stations[i + 1];
                 var distanceOfThisPart = Vector3.Distance(s1.transform.position, s2.transform.position);
                 if (totalDistance + distanceOfThisPart > distance)
                 {
@@ -129,10 +130,10 @@ public class Train : MonoBehaviour
         else
         {
             float totalDistance = 0;
-            for (var i = line.stations.Count - 1; i > 0; i--)
+            for (var i = stations.Length - 1; i > 0; i--)
             {
-                var s1 = line.stations[i];
-                var s2 = line.stations[i - 1];
+                var s1 = stations[i];
+                var s2 = stations[i - 1];
                 var distanceOfThisPart = Vector3.Distance(s1.transform.position, s2.transform.position);
                 if (totalDistance + distanceOfThisPart > distance)
                 {
