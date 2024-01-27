@@ -25,9 +25,6 @@ public class GetOn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inputManager.direction.magnitude > deathArea) {
-            Debug.Log(inputManager.direction);
-        }
         if (player.train != null && inputManager.getOff)
         {
             player.willStay = true;
