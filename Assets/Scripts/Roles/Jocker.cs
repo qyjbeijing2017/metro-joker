@@ -7,6 +7,7 @@ public class Jocker : MonoBehaviour, IRoleBase
     public Line line { get; set; }
     public bool reverse { get; set; }
     public bool willStay { get; set; }
+    public bool wasArrested { get; set; } = false;
 
 
     public void Tick(float dt)

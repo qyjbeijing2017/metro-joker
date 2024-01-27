@@ -29,6 +29,12 @@ public class CatchJocker : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, jocker.transform.position) < catchDistance)
             {
+                if(jocker.wasArrested)
+                {
+                    continue;
+                }
+                jocker.wasArrested = true;
+                jocker.enabled = false;
                 OnJockerCaught?.Invoke(jocker);
             }
         }
