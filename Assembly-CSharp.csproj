@@ -84,6 +84,8 @@
     <Compile Include="Assets/Scripts/Skills/GetOff.cs" />
     <Compile Include="Assets/Scripts/StartScene.cs" />
     <Compile Include="Assets/Scripts/BackToStart.cs" />
+    <Compile Include="Assets/Scripts/Task.cs" />
+    <Compile Include="Assets/Scripts/UI/UITaskTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
