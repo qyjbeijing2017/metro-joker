@@ -21,7 +21,7 @@ public class UITaskTime : MonoBehaviour
         var index = 0;
         foreach(Task task in tasks)
         {
-            if(!task.isRunning) {
+            if(task.isRunning) {
                 textMeshPros[index].text = task.arriveTime / task.arriveTime2Finished + "%";
                 textMeshPros[index].color = task.taskColor;
                 textMeshPros[index].enabled = true;
