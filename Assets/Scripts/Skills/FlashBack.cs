@@ -13,7 +13,7 @@ public class FlashBack : Skill
         base.Start();
         policeman = GetComponent<Policeman>();
         policeBeacon = Instantiate(policeBeacon, transform.position, Quaternion.identity);
-        policeBeacon.enabled = false;
+        policeBeacon.gameObject.SetActive(false);
         roleId = GetComponent<InputManager>().playerID;
     }
 
@@ -28,14 +28,15 @@ public class FlashBack : Skill
 
                 // policeBeacon.Set(policeman.current.station, roleId);
                 (policeman as IRoleBase).EnterStation(policeBeacon.station);
-                policeBeacon.enabled = false;
+                policeBeacon.gameObject.SetActive(false);
             }
             return true;
         }
         else 
         {
-            // policeBeacon.Set(policeman.train.station, policeman.train.roleId);
-            policeBeacon.enabled = true;
+            policeBeacon.station = policeman.station;
+            policeBeacon.transform.position = policeman.transform.position;
+            policeBeacon.gameObject.SetActive(true);
             return false;
         }
     }
