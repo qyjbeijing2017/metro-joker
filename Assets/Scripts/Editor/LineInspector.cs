@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [CustomEditor(typeof(Line))]
@@ -21,12 +22,13 @@ public class LineInspector : Editor
             {
                 GenData(l);
             }
+
+            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         }
     }
 
     private void GenData(Line l)
     {
-        var oT = Resources.Load<GameObject>("object train");
         foreach (var s in l.stations)
         {
             s.AddLine(l);
