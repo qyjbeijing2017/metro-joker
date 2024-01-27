@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(InputManager))]
@@ -33,20 +34,29 @@ public class GetOn : MonoBehaviour
         if (player.train == null && inputManager.direction.magnitude > deathArea)
         {
 
-            foreach(var line in player.station.lines) {
-                var angle = Vector2.SignedAngle(inputManager.direction, getDirection(line, false));
-                if (angle < marchAngle && angle > -marchAngle)
+            foreach (var line in player.station.lines)
+            {
+                var dir = getDirection(line, false);
+                if (dir != Vector2.zero)
                 {
-                    player.line = line;
-                    player.reverse = false;
-                    return;
+                    var angle = Vector2.SignedAngle(inputManager.direction, dir);
+                    if (angle < marchAngle && angle > -marchAngle)
+                    {
+                        player.line = line;
+                        player.reverse = false;
+                        return;
+                    }
                 }
-                angle = Vector2.SignedAngle(inputManager.direction, getDirection(line, true));
-                if (angle < marchAngle && angle > -marchAngle)
+                dir = getDirection(line, true);
+                if (dir != Vector2.zero)
                 {
-                    player.line = line;
-                    player.reverse = true;
-                    return;
+                    var angle = Vector2.SignedAngle(inputManager.direction, getDirection(line, true));
+                    if (angle < marchAngle && angle > -marchAngle)
+                    {
+                        player.line = line;
+                        player.reverse = true;
+                        return;
+                    }
                 }
             }
         }
