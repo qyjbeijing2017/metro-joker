@@ -10,6 +10,7 @@ public class GetOff : Skill
 
     void Start()
     {
+        base.Start();
         jockers = FindObjectsByType<Jocker>(FindObjectsSortMode.None);
     }
 

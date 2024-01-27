@@ -40,6 +40,7 @@ public class SlowDown : Skill
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         policeman = GetComponent<Policeman>();
     }
 

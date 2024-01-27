@@ -25,8 +25,9 @@ public abstract class Skill : MonoBehaviour
 
     protected float deltaTime = 0f;
 
-    void Start()
+    protected void Start()
     {
+        
         inputManager = GetComponent<InputManager>();
         TimeManager.AddScaledTick(OnTick);
     }

@@ -8,8 +8,9 @@ public class FlashBack : Skill
     private int roleId;
 
 
-    void Start()
+    protected void Start()
     {
+        base.Start();
         policeman = GetComponent<Policeman>();
         policeBeacon = Instantiate(policeBeacon, transform.position, Quaternion.identity);
         policeBeacon.enabled = false;

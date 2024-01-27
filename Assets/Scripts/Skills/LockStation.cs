@@ -23,6 +23,7 @@ public class LockStation : Skill
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         jocker = GetComponent<Jocker>();
         
     }

@@ -16,6 +16,7 @@ public class CatchJocker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         role = GetComponent<Policeman>();
         enemy = new List<Jocker>(FindObjectsOfType<Jocker>());
 
