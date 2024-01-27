@@ -6,6 +6,7 @@ public class Line : MonoBehaviour
     public List<Station> stations = new();
     [SerializeField] private Color _color;
     public HashSet<Train> trains = new();
+    public bool isRing;
     public float timeGap;
     public float timeSinceLastSpawn;
     public float trainSpeed;
@@ -45,14 +46,17 @@ public class Line : MonoBehaviour
             station = stations[0],
             reverse = false,
         });
+        // t.MockDistance(0, false);
 
-        var r = ObjectPool.Pop<Train>("train");
-        r.Spawn(this, new MoveState
-        {
-            line = this,
-            station = stations[^1],
-            reverse = true,
-        });
+        // var r = ObjectPool.Pop<Train>("train");
+        // r.Spawn(this, new MoveState
+        // {
+        //     line = this,
+        //     station = stations[^1],
+        //     reverse = true,
+        // });
+        // Debug.Log($"Spawn reverse on station {stations[^1].name}");
+        // r.MockDistance(0, true);
     }
 
     public void SetSpeedMultiplier(float multiplier)
@@ -82,61 +86,126 @@ public class Line : MonoBehaviour
         }
     }
 
-    public bool GetNextMoveState(MoveState state, out MoveState newState)
+    public bool GetNextMoveState(MoveState curState, out MoveState newState)
     {
-        if (state == null)
+        if (isRing)
+        {
+            return GetNextStateRing(curState, out newState);
+        }
+        else
+        {
+            return GetNextMoveStateNonRing(curState, out newState);
+        }
+    }
+
+    public bool GetNextMoveStateNonRing(MoveState curState, out MoveState newState)
+    {
+        if (curState == null)
         {
             Debug.LogError("MoveState is null");
             newState = null;
             return false;
         }
 
-        if (state.line != this)
+        Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
+
+        if (curState.line != this)
         {
             Debug.LogError("MoveState is not on this line");
             newState = null;
             return false;
         }
 
-        if (state.stay)
+        if (curState.stay)
         {
             Debug.LogError("MoveState is not moving");
-            newState = state;
+            newState = curState;
             return true;
         }
 
-        var index = stations.IndexOf(state.station);
-        if (index == -1)
+        var curStationIndex = stations.IndexOf(curState.station);
+        if (curStationIndex == -1)
         {
             Debug.LogError("MoveState is not on this line");
             newState = null;
             return false;
         }
 
+        var isFirst = curStationIndex == 0;
+        var isLast = curStationIndex == stations.Count - 1;
+
         // if not reverse, it should find next stop, or get backwards and set reverse to true
-        if (!state.reverse)
+        if (!curState.reverse)
         {
-            var isLastStop = index == stations.Count - 1;
             newState = new MoveState
             {
                 line = this,
-                station = stations[isLastStop ? index - 1 : index + 1],
-                reverse = isLastStop,
+                station = stations[isLast ? curStationIndex - 1 : curStationIndex + 1],
+                reverse = isLast,
                 stay = false
             };
 
+            Debug.Log($"next stop {newState.station.name} {newState.reverse}");
 
             return true;
         }
 
-        var isFirstStop = index == 0;
         newState = new MoveState
         {
             line = this,
-            reverse = !isFirstStop,
+            reverse = !isFirst,
             stay = false,
-            station = stations[isFirstStop ? 1 : index - 1]
+            station = stations[isFirst ? curStationIndex + 1 : curStationIndex - 1]
         };
+
+        Debug.Log($"next stop {newState.station.name} {newState.reverse}");
+        return true;
+    }
+
+    public bool GetNextStateRing(MoveState curState, out MoveState newState)
+    {
+        if (curState == null)
+        {
+            Debug.LogError("MoveState is null");
+            newState = null;
+            return false;
+        }
+
+        Debug.Log($"GetNextMoveState for {curState.station.name} {curState.reverse}");
+
+        if (curState.line != this)
+        {
+            Debug.LogError("MoveState is not on this line");
+            newState = null;
+            return false;
+        }
+
+        if (curState.stay)
+        {
+            Debug.LogError("MoveState is not moving");
+            newState = curState;
+            return true;
+        }
+
+        var curStationIndex = stations.IndexOf(curState.station);
+        if (curStationIndex == -1)
+        {
+            Debug.LogError("MoveState is not on this line");
+            newState = null;
+            return false;
+        }
+
+        var stationsCount = stations.Count;
+        var nextIndex = (curStationIndex + (curState.reverse ? -1 : 1) + stationsCount) % stationsCount;
+        newState = new MoveState
+        {
+            line = this,
+            station = stations[nextIndex],
+            reverse = curState.reverse,
+            stay = false
+        };
+
+        Debug.Log($"next stop {newState.station.name} {newState.reverse}");
         return true;
     }
 }

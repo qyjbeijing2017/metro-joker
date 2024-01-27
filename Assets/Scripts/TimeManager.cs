@@ -36,8 +36,9 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         var dt = Time.deltaTime;
-        foreach (var tick in scaledTicks)
+        for (var i = 0; i < scaledTicks.Count; i++)
         {
+            var tick = scaledTicks[i];
             tick(dt * timeScale);
         }
 

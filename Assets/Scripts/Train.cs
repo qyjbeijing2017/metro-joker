@@ -5,9 +5,33 @@ using UnityEngine.Events;
 public class Train : MonoBehaviour
 {
     public Line line;
-    private MoveState current;
-    private Vector3 posCurrent;
-    private MoveState next;
+
+    private MoveState _c;
+
+    private MoveState current
+    {
+        get => _c;
+        set
+        {
+            _c = value;
+            Debug.Log("set current " + value);
+        }
+    }
+
+    private Vector3 posCur;
+
+    private MoveState _n;
+
+    private MoveState next
+    {
+        get => _n;
+        set
+        {
+            _n = value;
+            Debug.Log("set next " + value);
+        }
+    }
+
     private Vector3 posNext;
     private float distance;
     private Vector3 direction;
@@ -19,9 +43,12 @@ public class Train : MonoBehaviour
     {
         this.line = line;
         current = start;
-        next = start;
+        next = line.GetNextMoveState(start, out var state) ? state : null;
+        CacheDistanceAndDirection();
         speed = line.trainSpeed;
         speedMultiplier = line.trainSpeedMultiplier;
+        Debug.Log($"Spawn on station {start.station.name}");
+        transform.position = current.station.transform.position;
         onReachStation.RemoveAllListeners();
     }
 
@@ -31,19 +58,32 @@ public class Train : MonoBehaviour
         speedMultiplier = multiplier;
     }
 
+    private void OnEnable()
+    {
+        TimeManager.AddScaledTick(Tick);
+    }
+
+    private void OnDisable()
+    {
+        TimeManager.RemoveScaledTick(Tick);
+    }
+
     public void Tick(float dt)
     {
         if (current.stay)
+        {
+            Debug.Log("Stay");
             return;
+        }
 
         var selfTransform = transform;
-        var remainingDistance = distance;
+        var remainingDistance = Vector3.Distance(selfTransform.position, posNext);
         var moveDistance = speed * speedMultiplier * dt;
         if (remainingDistance <= moveDistance)
         {
             OnReachStation();
             var dif = moveDistance - remainingDistance;
-            selfTransform.transform.position = posCurrent + direction * dif;
+            selfTransform.transform.position = posCur + direction * dif;
         }
         else
         {
@@ -80,6 +120,8 @@ public class Train : MonoBehaviour
                         reverse = false,
                         stay = false,
                     };
+                    Debug.Log($"MockDistance Cur {current.station.name} Next {next.station.name}");
+                    CacheDistanceAndDirection();
                     return;
                 }
 
@@ -121,11 +163,21 @@ public class Train : MonoBehaviour
         }
     }
 
+    private void CacheDistanceAndDirection()
+    {
+        posCur = current.station.transform.position;
+        posNext = next.station.transform.position;
+        distance = Vector3.Distance(posNext, posCur);
+        direction = (posNext - posCur).normalized;
+    }
+
     private void OnReachStation()
     {
+        Debug.Log($"Reach station {current.station.name}");
         current = next;
         if (current.stay)
         {
+            Debug.Log("Stay");
             next = null;
         }
         else
@@ -136,11 +188,9 @@ public class Train : MonoBehaviour
                 throw new Exception("Should not happen");
             }
 
+            Debug.Log($"Cur {current.station.name} Next {state.station.name}");
             next = state;
-            posCurrent = current.station.transform.position;
-            posNext = next.station.transform.position;
-            distance = Vector3.Distance(posCurrent, posNext);
-            direction = (posNext - posCurrent).normalized;
+            CacheDistanceAndDirection();
         }
 
         onReachStation.Invoke(current.station.isTerminal);
