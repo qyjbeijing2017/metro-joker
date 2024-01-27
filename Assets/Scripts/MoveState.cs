@@ -7,12 +7,12 @@ public class MoveState
 
     public override string ToString()
     {
-        return $"{line.name} {station.name} {reverse} {stay}";
+        return $"line:{line.name} station:{station.name} reverse:{reverse} stay:{stay}";
     }
 
     public bool IsAtTerminal()
     {
-        var index = line.stations.IndexOf(this.station);
+        var index = line.stations.IndexOf(station);
         var isEnd = reverse && index == 0 || !reverse && index == line.stations.Count - 1;
         return isEnd;
     }

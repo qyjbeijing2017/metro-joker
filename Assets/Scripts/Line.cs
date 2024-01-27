@@ -46,17 +46,14 @@ public class Line : MonoBehaviour
             station = stations[0],
             reverse = false,
         });
-        // t.MockDistance(0, false);
 
-        // var r = ObjectPool.Pop<Train>("train");
-        // r.Spawn(this, new MoveState
-        // {
-        //     line = this,
-        //     station = stations[^1],
-        //     reverse = true,
-        // });
-        // Debug.Log($"Spawn reverse on station {stations[^1].name}");
-        // r.MockDistance(0, true);
+        var r = ObjectPool.Pop<Train>("train");
+        r.Spawn(this, new MoveState
+        {
+            line = this,
+            station = stations[^1],
+            reverse = true,
+        });
     }
 
     public void SetSpeedMultiplier(float multiplier)

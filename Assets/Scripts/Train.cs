@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Train : MonoBehaviour
 {
     public Line line;
+    public Transform child;
 
     private MoveState _c;
 
@@ -104,8 +105,9 @@ public class Train : MonoBehaviour
                 if (totalDistance + distanceOfThisPart > distance)
                 {
                     var dif = distance - totalDistance;
-                    var direction = (s2.transform.position - s1.transform.position).normalized;
-                    transform.position = s1.transform.position + direction * dif;
+                    var p1 = s1.transform.position;
+                    var d = (s2.transform.position - p1).normalized;
+                    transform.position = p1 + d * dif;
                     current = new MoveState
                     {
                         line = line,
@@ -139,8 +141,9 @@ public class Train : MonoBehaviour
                 if (totalDistance + distanceOfThisPart > distance)
                 {
                     var dif = distance - totalDistance;
-                    var direction = (s2.transform.position - s1.transform.position).normalized;
-                    transform.position = s1.transform.position + direction * dif;
+                    var p1 = s1.transform.position;
+                    var d = (s2.transform.position - p1).normalized;
+                    transform.position = p1 + d * dif;
                     current = new MoveState
                     {
                         line = line,
@@ -169,32 +172,27 @@ public class Train : MonoBehaviour
         posNext = next.station.transform.position;
         distance = Vector3.Distance(posNext, posCur);
         direction = (posNext - posCur).normalized;
+        transform.forward = direction;
     }
 
     private void OnReachStation()
     {
-        Debug.Log($"Reach station {current.station.name}");
         current = next;
-        if (current.stay)
+        var b = current.line.GetNextMoveState(current, out var state);
+        if (!b)
         {
-            Debug.Log("Stay");
-            next = null;
+            throw new Exception("Should not happen");
         }
-        else
-        {
-            var b = current.line.GetNextMoveState(current, out var state);
-            if (!b)
-            {
-                throw new Exception("Should not happen");
-            }
 
-            Debug.Log($"Cur {current.station.name} Next {state.station.name}");
-            next = state;
-            CacheDistanceAndDirection();
-        }
+        Debug.Log($"Cur {current.station.name} Next {state.station.name}");
+        next = state;
+        CacheDistanceAndDirection();
 
         var isEnd = current.IsAtTerminal();
         onReachStation.Invoke(isEnd);
-        ObjectPool.Push("train", this);
+        if (isEnd)
+        {
+            ObjectPool.Push("train", this);
+        }
     }
 }
