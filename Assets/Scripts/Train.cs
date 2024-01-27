@@ -184,18 +184,19 @@ public class Train : MonoBehaviour
         next = state;
         if (ShouldRecycle())
         {
+            onReachStation.Invoke(true);
             return;
         }
 
         CacheDistanceAndDirection();
         KickPassengersStaying();
         CollectPassengers();
+        onReachStation.Invoke(false);
     }
 
     private bool ShouldRecycle()
     {
         var isEnd = current.IsAtTerminal();
-        onReachStation.Invoke(isEnd);
         if (!isEnd || line.isRing)
             return false;
         ObjectPool.Push("train", this);

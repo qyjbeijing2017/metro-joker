@@ -41,8 +41,8 @@ public class EventManager
 
 public enum EventName
 {
-    EnterStation,
-    LeaveStation,
-    EnterTrain,
-    LeaveTrain,
+    RoleEnterStation,
+    RoleLeaveStation,
+    RoleEnterTrain,
+    RoleLeaveTrain,
 }

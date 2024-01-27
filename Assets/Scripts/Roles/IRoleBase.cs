@@ -15,13 +15,13 @@ public interface IRoleBase
     {
         this.station = station;
         station.AddRole(this);
-        EventManager.TriggerEvent(EventName.EnterStation, (station, this));
+        EventManager.TriggerEvent(EventName.RoleEnterStation, (station, this));
         line = null;
         reverse = false;
         if (train != null)
         {
             train.RemoveRole(this);
-            EventManager.TriggerEvent(EventName.LeaveTrain, (train, this));
+            EventManager.TriggerEvent(EventName.RoleLeaveTrain, (train, this));
         }
 
         train = null;
@@ -36,9 +36,9 @@ public interface IRoleBase
     {
         this.train = train;
         station.RemoveRole(this);
-        EventManager.TriggerEvent(EventName.LeaveStation, (station, this));
+        EventManager.TriggerEvent(EventName.RoleLeaveStation, (station, this));
         train.AddRole(this);
-        EventManager.TriggerEvent(EventName.EnterTrain, (train, this));
+        EventManager.TriggerEvent(EventName.RoleEnterTrain, (train, this));
         station = null;
         line = null;
         reverse = false;
