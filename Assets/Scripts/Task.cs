@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Roles;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,10 +30,27 @@ public class Task : MonoBehaviour
     void Start()
     {
         station = GetComponent<Station>();
+        TimeManager.AddScaledTick(OnTick);
+
+    }
+    private float deltaTime = 0;
+    void OnTick(float deltaTime) {
+        this.deltaTime = deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach(IRoleBase role in station.roles) {
+            if(typeof(Policeman).IsInstanceOfType(role)){
+                ArriveTime += deltaTime;
+                return;
+            }
+        }
+        ArriveTime = 0;
+    }
+
+    void OnDestroy() {
+        TimeManager.RemoveScaledTick(OnTick);
     }
 }
