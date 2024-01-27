@@ -64,7 +64,7 @@ public class GetOn : MonoBehaviour
         }
     }
 
-    Vector2 getDirection(Line line, bool reverse)
+    Vector3 getDirection(Line line, bool reverse)
     {
         var index = line.stations.FindLastIndex((s) => s == player.station);
         var nextIndex = index + (reverse ? -1 : 1);
