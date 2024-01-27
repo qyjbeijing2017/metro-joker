@@ -41,12 +41,14 @@ public class GetOn : MonoBehaviour
                 if (angle < marchAngle && angle > -marchAngle)
                 {
                     player.line = line;
+                    player.reverse = false;
                     return;
                 }
                 angle = Vector2.SignedAngle(inputManager.direction, getDirection(line, true));
                 if (angle < marchAngle && angle > -marchAngle)
                 {
                     player.line = line;
+                    player.reverse = true;
                     return;
                 }
             }
