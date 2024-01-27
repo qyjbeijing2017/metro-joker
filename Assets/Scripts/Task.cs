@@ -24,6 +24,8 @@ public class Task : MonoBehaviour
 
     public bool isRunning { get; private set; } = false;
 
+    public bool isFinished {get { return ArriveTime >= ArriveTime2Finished; } }
+
     public UnityAction OnTaskFinished;
 
 
@@ -42,13 +44,20 @@ public class Task : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isFinished) return;
         foreach(IRoleBase role in station.roles) {
             if(role is Jocker) {
                 ArriveTime += deltaTime;
+                isRunning = true;
+                if(isFinished) {
+                    OnTaskFinished?.Invoke();
+                    isRunning = false;
+                }
                 return;
             }
         }
         ArriveTime = 0;
+        isRunning = false;
     }
 
     void OnDestroy() {
