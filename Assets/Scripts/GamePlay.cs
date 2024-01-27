@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Roles;
 using UnityEngine;
 
 public class GamePlay : MonoBehaviour
@@ -21,6 +19,5 @@ public class GamePlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

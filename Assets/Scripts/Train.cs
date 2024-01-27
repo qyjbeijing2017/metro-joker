@@ -208,22 +208,20 @@ public class Train : MonoBehaviour
         var roles = current.station.GetRoles(next.line, next.reverse);
         foreach (var role in roles)
         {
-            role.train = this;
-            role.GetOn();
+            role.GetOn(this);
             passangers.Add(role);
         }
     }
 
     private void KickPassengersStaying()
     {
-        foreach (var p in passangers)
+        for (var i = passangers.Count - 1; i >= 0; i--)
         {
-            if (p.current.stay)
-            {
-                p.GetOff(current.station);
-                p.train = null;
-                passangers.Remove(p);
-            }
+            var p = passangers[i];
+            if (!p.willStay)
+                continue;
+            p.GetOff(current.station);
+            passangers.RemoveAt(i);
         }
     }
 
