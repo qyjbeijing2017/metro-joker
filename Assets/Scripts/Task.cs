@@ -10,7 +10,8 @@ public class Task : MonoBehaviour
 {
     Station station;
     [SerializeField]
-    private string taskName = "Task";
+    private string TaskName = "Task";
+    public string taskName { get { return TaskName; } }
     [SerializeField]
     private Color TaskColor = Color.white;
     public Color taskColor { get { return TaskColor; } }
