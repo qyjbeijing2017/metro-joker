@@ -14,25 +14,31 @@ public class SlowDown : Skill
 
     public override bool UseSkill()
     {
+
         if(policeman.train)
         {
+            Debug.Log("¼õËÙ");
             policeman.train.line.SetSpeedMultiplier(slowDownMultiplier);
             policeman.train.onReachStation.AddListener(onDock);
+            slowDownCount = 0;
             return true;
         }
         return false;
     }
 
     void onDock(bool isTerminal) {
+        Debug.Log("½øÕ¾");
         if(isTerminal) {
             slowDownCount = 0;
             policeman.train.line.SetSpeedMultiplier(1f);
             policeman.train.onReachStation.RemoveListener(onDock);
+            Debug.Log("»Ö¸´");
         } else {
             slowDownCount++;
             if(slowDownCount >= slowDownTimes) {
                 policeman.train.line.SetSpeedMultiplier(1f);
                 policeman.train.onReachStation.RemoveListener(onDock);
+                Debug.Log("»Ö¸´");
             }
         }
     }

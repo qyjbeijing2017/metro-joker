@@ -8402,7 +8402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851394f4e78874159b8d42d8a3a91c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1365782852}
+  player: {fileID: 1267147946}
 --- !u!1 &581908942
 GameObject:
   m_ObjectHideFlags: 0
@@ -8514,7 +8514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851394f4e78874159b8d42d8a3a91c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 758413235}
+  player: {fileID: 1375134729}
 --- !u!1 &590461598
 GameObject:
   m_ObjectHideFlags: 0
@@ -10526,11 +10526,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
---- !u!1 &758413235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8423446152348156602, guid: 3569c41186f294341ad0b7627b4cd753, type: 3}
-  m_PrefabInstance: {fileID: 758413234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766531580
 GameObject:
   m_ObjectHideFlags: 0
@@ -16552,6 +16547,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1267147946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1462918930898466306, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+  m_PrefabInstance: {fileID: 1600142460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290796449
 GameObject:
   m_ObjectHideFlags: 0
@@ -17701,7 +17701,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3668735374023429859, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
       propertyPath: catchDistance
-      value: 1.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7311993581394164670, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
       propertyPath: PlayerID
@@ -17755,13 +17755,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Policeman1
       objectReference: {fileID: 0}
+    - target: {fileID: 8872331059366339391, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
---- !u!1 &1365782852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8872331059366339391, guid: c4cb563dc41594fd387d35f11cadbc76, type: 3}
-  m_PrefabInstance: {fileID: 1365782851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1372452613
 GameObject:
   m_ObjectHideFlags: 0
@@ -17859,6 +17858,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372452613}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1375134729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8963295580407690369, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
+  m_PrefabInstance: {fileID: 1944663663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1388174865
 GameObject:
   m_ObjectHideFlags: 0
@@ -20173,13 +20177,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 436745508095179676, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+      propertyPath: PlayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1462918930898466306, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_Name
       value: Policeman3
       objectReference: {fileID: 0}
     - target: {fileID: 1462918930898466306, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443109732242896806, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+      propertyPath: slowDownTimes
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3907497625030173302, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_Enabled
@@ -20228,6 +20240,10 @@ PrefabInstance:
     - target: {fileID: 5339156298954030917, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8255792906423216900, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
+      propertyPath: catchDistance
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc1f56d8a28da4e2a9f237ed44d3f1f6, type: 3}
@@ -23865,6 +23881,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2466559825291414085, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
+      propertyPath: getOffDistance
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 3582267764432404189, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -23911,7 +23931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7020258207188613852, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
       propertyPath: PlayerID
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8963295580407690369, guid: 04b8705f270664b57aba9c3752b39464, type: 3}
       propertyPath: m_Name
