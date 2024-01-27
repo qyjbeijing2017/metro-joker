@@ -8,6 +8,7 @@ public class FlashBack : Skill
     [SerializeField]
     private PoliceBeacon policeBeacon;
     private Policeman policeman;
+    private int roleId;
 
 
     void Start()
@@ -15,6 +16,7 @@ public class FlashBack : Skill
         policeman = GetComponent<Policeman>();
         policeBeacon = Instantiate(policeBeacon, transform.position, Quaternion.identity);
         policeBeacon.enabled = false;
+        roleId = GetComponent<InputManager>().playerID;
     }
 
     public override bool UseSkill()
@@ -23,8 +25,10 @@ public class FlashBack : Skill
         if (policeman.train)
         {
             if(policeBeacon.enabled == true) {
-                // policeman.GetOff(policeman.train);
+                // // Todo: flash back
+                // policeman.current.station = policeBeacon.station;
 
+                // policeBeacon.Set(policeman.current.station, roleId);
             }
             return true;
         }
