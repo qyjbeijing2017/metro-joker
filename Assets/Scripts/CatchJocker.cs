@@ -27,14 +27,15 @@ public class CatchJocker : MonoBehaviour
     {
         foreach (var jocker in enemy)
         {
+            if (jocker.wasArrested)
+            {
+                continue;
+            }
             if (Vector2.Distance(transform.position, jocker.transform.position) < catchDistance)
             {
-                if(jocker.wasArrested)
-                {
-                    continue;
-                }
                 jocker.wasArrested = true;
-                jocker.enabled = false;
+                jocker.gameObject.SetActive(false);
+                //Destroy(jocker.gameObject);
                 OnJockerCaught?.Invoke(jocker);
             }
         }

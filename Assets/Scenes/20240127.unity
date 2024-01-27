@@ -4297,7 +4297,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -1.5
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &338264443
@@ -4567,7 +4567,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -4
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &351671650
@@ -5426,7 +5426,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -3.5
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &431315144
@@ -7226,7 +7226,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -3
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &511078754
@@ -10874,7 +10874,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -0.5
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &777875619
@@ -16522,7 +16522,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 1
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -1
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &1261589430
@@ -21269,7 +21269,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -2.5
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &1696929154
@@ -26437,7 +26437,7 @@ MonoBehaviour:
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
   timeGap: 3
-  timeSinceLastSpawn: 0
+  timeSinceLastSpawn: -2
   trainSpeed: 2
   trainSpeedMultiplier: 0
 --- !u!4 &2122187689
