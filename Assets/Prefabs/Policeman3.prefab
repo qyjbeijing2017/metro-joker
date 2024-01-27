@@ -112,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670f37f35d8c54b5fa22fd907ade177d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 2
+  PlayerID: 3
   GetOnAxis: 8
-  GetOffButton: 0
-  SkillButton: 0
+  GetOffButton: 6
+  SkillButton: 7
 --- !u!114 &3443109732242896806
 MonoBehaviour:
   m_ObjectHideFlags: 0
