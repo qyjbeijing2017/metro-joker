@@ -17,7 +17,8 @@ public interface IRoleBase
         station.AddRole(this);
         line = null;
         reverse = false;
-        train.RemoveRole(this);
+        if (train != null)
+            train.RemoveRole(this);
         train = null;
         willStay = true;
 
