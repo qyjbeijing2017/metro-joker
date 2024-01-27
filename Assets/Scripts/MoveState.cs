@@ -9,4 +9,11 @@ public class MoveState
     {
         return $"{line.name} {station.name} {reverse} {stay}";
     }
+
+    public bool IsAtTerminal()
+    {
+        var index = line.stations.IndexOf(this.station);
+        var isEnd = reverse && index == 0 || !reverse && index == line.stations.Count - 1;
+        return isEnd;
+    }
 }

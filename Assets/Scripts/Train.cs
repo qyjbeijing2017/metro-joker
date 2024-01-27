@@ -193,6 +193,8 @@ public class Train : MonoBehaviour
             CacheDistanceAndDirection();
         }
 
-        onReachStation.Invoke(current.station.isTerminal);
+        var isEnd = current.IsAtTerminal();
+        onReachStation.Invoke(isEnd);
+        ObjectPool.Push("train", this);
     }
 }

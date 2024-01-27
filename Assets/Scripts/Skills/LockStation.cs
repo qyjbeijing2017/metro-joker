@@ -12,7 +12,7 @@ public class LockStation : Skill
 
     public override bool UseSkill()
     {
-        if(!jocker.train && !jocker.current.station.isTerminal) {
+        if(!jocker.train && !jocker.current.IsAtTerminal()) {
             jocker.current.station.SetStuck(true);
             lockTimeLeft = lockTime;
             return true;
