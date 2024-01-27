@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 
 public class GamePlay : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class GamePlay : MonoBehaviour
     private List<Policeman> police;
     private List<Task> tasks;
     private List<ExitGate> exitGates;
+
+    private List<Jocker> caughtJockers = new List<Jocker>();
 
     private int taskFinishedCount = 0;
 
@@ -21,6 +24,7 @@ public class GamePlay : MonoBehaviour
         exitGates.ForEach(gate => gate.enabled = false);
         tasks.ForEach(task => task.OnTaskFinished += OnTaskFinished);
         exitGates.ForEach(gate => gate.onExit += OnExit);
+        police.ForEach(p => p.GetComponent<CatchJocker>().OnJockerCaught += OnJockerCaught);
     }
 
     void OnTaskFinished()
@@ -32,9 +36,18 @@ public class GamePlay : MonoBehaviour
         }
     }
 
+    void OnJockerCaught(Jocker jocker)
+    {
+        caughtJockers.Add(jocker);
+        if (caughtJockers.Count == jokers.Count)
+        {
+            Debug.Log("Police Win");
+        }
+    }
+
 
     void OnExit() {
-        Debug.Log("Exit");
+        Debug.Log("Jocker Win");
     }
 
     // Update is called once per frame
