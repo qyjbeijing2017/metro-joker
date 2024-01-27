@@ -1,3 +1,6 @@
+using System.Transactions;
+using UnityEngine;
+
 public interface IRoleBase
 {
     public MoveState current { get; set; }
@@ -6,37 +9,39 @@ public interface IRoleBase
 
     public void Tick(float dt);
 
-    public void GetOff(Train train)
+    public void GetOff(Station station)
     {
-        //some code to detach this role
-
-        if (next is null)
+        if (train == null)
         {
             return;
         }
 
-        next.stay = true;
-    }
-
-    public void GetOn(Train train)
-    {
-    }
-
-    // should only be controlled by train
-    public void SetNextByTrain(MoveState newState)
-    {
-        current = newState;
-        next = newState;
-    }
-
-    public void SetNextByChoice(MoveState newState)
-    {
-        if (!current.stay)
+        current = new MoveState
         {
-            // this is en error
-            return;
-        }
+            station = station,
+            line = null,
+            reverse = false,
+            stay = true,
+        };
 
-        next = newState;
+        next = null;
+    }
+
+    public void GetOn()
+    {
+        var mono = this as MonoBehaviour;
+        mono.transform.SetParent(train.transform.parent);
+        mono.transform.localPosition = Vector3.zero;
+    }
+
+    public void SetNext(Line line, bool reverse)
+    {
+        next = new MoveState()
+        {
+            line = line,
+            reverse = reverse,
+            stay = false,
+            // station = 
+        };
     }
 }

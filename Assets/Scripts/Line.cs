@@ -10,25 +10,26 @@ public class Line : MonoBehaviour
     public float timeGap;
     public float timeSinceLastSpawn;
     public float trainSpeed;
-    public float trainSpeedMultiplier;
+    public float trainSpeedMultiplier = 0;
 
     private void OnEnable()
     {
+        if (isRing)
+            return;
+
         TimeManager.AddScaledTick(Tick);
     }
 
     private void OnDisable()
     {
+        if (isRing)
+            return;
+
         TimeManager.RemoveScaledTick(Tick);
     }
 
     private void Tick(float dt)
     {
-        foreach (var train in trains)
-        {
-            train.Tick(dt);
-        }
-
         timeSinceLastSpawn += dt;
         if (timeSinceLastSpawn > timeGap)
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +7,9 @@ public class Train : MonoBehaviour
 {
     public Line line;
     public Transform child;
+    public List<IRoleBase> passangers = new();
 
-    private MoveState _c;
+    public MoveState _c;
 
     private MoveState current
     {
@@ -21,7 +23,7 @@ public class Train : MonoBehaviour
 
     private Vector3 posCur;
 
-    private MoveState _n;
+    public MoveState _n;
 
     private MoveState next
     {
@@ -33,11 +35,11 @@ public class Train : MonoBehaviour
         }
     }
 
-    private Vector3 posNext;
-    private float distance;
-    private Vector3 direction;
-    private float speed = 1;
-    private float speedMultiplier = 1;
+    public Vector3 posNext;
+    public float distance;
+    public Vector3 direction;
+    public float speed = 1;
+    public float speedMultiplier;
     public UnityEvent<bool> onReachStation = new();
 
     public void Spawn(Line line, MoveState start)
@@ -71,15 +73,9 @@ public class Train : MonoBehaviour
 
     public void Tick(float dt)
     {
-        if (current.stay)
-        {
-            Debug.Log("Stay");
-            return;
-        }
-
         var selfTransform = transform;
         var remainingDistance = Vector3.Distance(selfTransform.position, posNext);
-        var moveDistance = speed * speedMultiplier * dt;
+        var moveDistance = speed * (speedMultiplier + 1) * dt;
         if (remainingDistance <= moveDistance)
         {
             OnReachStation();
@@ -184,15 +180,61 @@ public class Train : MonoBehaviour
             throw new Exception("Should not happen");
         }
 
-        Debug.Log($"Cur {current.station.name} Next {state.station.name}");
+        // Debug.Log($"Cur {current.station.name} Next {state.station.name}");
         next = state;
-        CacheDistanceAndDirection();
+        if (ShouldRecycle())
+        {
+            return;
+        }
 
+        CacheDistanceAndDirection();
+        KickPassengersStaying();
+        CollectPassengers();
+    }
+
+    private bool ShouldRecycle()
+    {
         var isEnd = current.IsAtTerminal();
         onReachStation.Invoke(isEnd);
-        if (isEnd)
+        if (!isEnd || line.isRing)
+            return false;
+        ObjectPool.Push("train", this);
+        KickAllPassengers();
+        return true;
+    }
+
+    private void CollectPassengers()
+    {
+        var roles = current.station.GetRoles(next.line, next.reverse);
+        foreach (var role in roles)
         {
-            ObjectPool.Push("train", this);
+            role.train = this;
+            role.GetOn();
+            passangers.Add(role);
         }
+    }
+
+    private void KickPassengersStaying()
+    {
+        foreach (var p in passangers)
+        {
+            if (p.current.stay)
+            {
+                p.GetOff(current.station);
+                p.train = null;
+                passangers.Remove(p);
+            }
+        }
+    }
+
+    private void KickAllPassengers()
+    {
+        foreach (var p in passangers)
+        {
+            p.GetOff(current.station);
+            p.train = null;
+        }
+
+        passangers.Clear();
     }
 }

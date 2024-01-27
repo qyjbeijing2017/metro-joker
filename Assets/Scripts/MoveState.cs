@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public class MoveState
 {
     public Line line;
