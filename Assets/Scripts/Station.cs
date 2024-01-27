@@ -13,6 +13,28 @@ public class Station : MonoBehaviour
         lines.Add(line);
     }
 
+    public void AddRole(IRoleBase role)
+    {
+        if (roles.Contains(role))
+        {
+            Debug.LogError("role already in station");
+            return;
+        }
+
+        roles.Add(role);
+    }
+
+    public void RemoveRole(IRoleBase role)
+    {
+        if (!roles.Contains(role))
+        {
+            Debug.LogError("role not in station");
+            return;
+        }
+
+        roles.Remove(role);
+    }
+
     public List<IRoleBase> GetRoles(Line line, bool reverse)
     {
         return roles.Where(i => i.line == line && i.reverse == reverse).ToList();

@@ -19,8 +19,10 @@ public interface IRoleBase
         }
 
         this.station = station;
+        station.AddRole(this);
         line = null;
         reverse = false;
+        train.RemoveRole(this);
         train = null;
         willStay = true;
 
@@ -32,6 +34,8 @@ public interface IRoleBase
     public void GetOn(Train train)
     {
         this.train = train;
+        station.RemoveRole(this);
+        train.AddRole(this);
         station = null;
         line = null;
         reverse = false;

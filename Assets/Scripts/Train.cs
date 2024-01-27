@@ -7,7 +7,7 @@ public class Train : MonoBehaviour
 {
     public Line line;
     public Transform child;
-    public List<IRoleBase> passangers = new();
+    public List<IRoleBase> roles = new();
 
     public MoveState _c;
 
@@ -209,30 +209,47 @@ public class Train : MonoBehaviour
         foreach (var role in roles)
         {
             role.GetOn(this);
-            passangers.Add(role);
         }
+    }
+
+    public void AddRole(IRoleBase role)
+    {
+        if (roles.Contains(role))
+        {
+            Debug.LogError("Already contains role");
+            return;
+        }
+
+        roles.Add(role);
+    }
+
+    public void RemoveRole(IRoleBase role)
+    {
+        if (!roles.Contains(role))
+        {
+            Debug.LogError("Not contains role");
+            return;
+        }
+
+        roles.Remove(role);
     }
 
     private void KickPassengersStaying()
     {
-        for (var i = passangers.Count - 1; i >= 0; i--)
+        for (var i = roles.Count - 1; i >= 0; i--)
         {
-            var p = passangers[i];
+            var p = roles[i];
             if (!p.willStay)
                 continue;
             p.GetOff(current.station);
-            passangers.RemoveAt(i);
         }
     }
 
     private void KickAllPassengers()
     {
-        foreach (var p in passangers)
+        foreach (var p in roles)
         {
             p.GetOff(current.station);
-            p.train = null;
         }
-
-        passangers.Clear();
     }
 }
