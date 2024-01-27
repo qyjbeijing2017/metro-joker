@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3622424762461470139}
   - component: {fileID: 5127569563108083824}
   - component: {fileID: 5004326271295506934}
+  - component: {fileID: 1750672187711251265}
   m_Layer: 0
   m_Name: Jocker1
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 3
+  GetOnAxis: 0
   GetOffButton: 0
   SkillButton: 0
 --- !u!114 &5127569563108083824
@@ -127,3 +129,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoolDown: 10
   lockTime: 5
+--- !u!114 &1750672187711251265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423446152348156602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f640d712bc3447fad9bfc572cb9742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathArea: 0.5
+  marchAngle: 45

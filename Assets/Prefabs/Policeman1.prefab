@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1700127158681039964}
   - component: {fileID: 7311993581394164670}
   - component: {fileID: -6629540804476252707}
+  - component: {fileID: -1197826781756521877}
+  - component: {fileID: -3668735374023429859}
   m_Layer: 0
   m_Name: Policeman1
   m_TagString: Untagged
@@ -111,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 0
+  GetOnAxis: 0
   GetOffButton: 0
   SkillButton: 0
 --- !u!114 &-6629540804476252707
@@ -126,3 +129,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDown: 10
+--- !u!114 &-1197826781756521877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872331059366339391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f640d712bc3447fad9bfc572cb9742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathArea: 0.5
+  marchAngle: 45
+--- !u!114 &-3668735374023429859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872331059366339391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8bac2be519d49729dadd9a82e3cb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catchDistance: 5
