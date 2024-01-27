@@ -13,11 +13,6 @@ public interface IRoleBase
 
     public void GetOff(Station station)
     {
-        if (train == null)
-        {
-            return;
-        }
-
         this.station = station;
         station.AddRole(this);
         line = null;
