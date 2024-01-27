@@ -8,7 +8,6 @@ public class GamePlay : MonoBehaviour
     private List<Jocker> jokers;
     private List<Policeman> police;
 
-    private 
 
     // Start is called before the first frame update
     void Start()

@@ -42,7 +42,7 @@ public class Task : MonoBehaviour
     void Update()
     {
         foreach(IRoleBase role in station.roles) {
-            if(typeof(Policeman).IsInstanceOfType(role)){
+            if(role is Jocker) {
                 ArriveTime += deltaTime;
                 return;
             }
