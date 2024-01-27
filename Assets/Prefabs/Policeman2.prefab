@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 1
-  GetOnAxis: 0
+  GetOnAxis: 8
   GetOffButton: 0
   SkillButton: 0
 --- !u!114 &9191950860640164781
