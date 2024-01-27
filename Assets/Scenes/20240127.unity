@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3443,9 +3443,9 @@ MonoBehaviour:
   - {fileID: 1039434958}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &338264443
 Transform:
@@ -3713,9 +3713,9 @@ MonoBehaviour:
   - {fileID: 795382917}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &351671650
 Transform:
@@ -4472,9 +4472,9 @@ MonoBehaviour:
   - {fileID: 1444293293}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &431315144
 Transform:
@@ -6006,9 +6006,9 @@ MonoBehaviour:
   - {fileID: 534224533}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &511078754
 Transform:
@@ -9185,9 +9185,9 @@ MonoBehaviour:
   - {fileID: 93131420}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &777875619
 Transform:
@@ -14065,9 +14065,9 @@ MonoBehaviour:
   - {fileID: 576278280}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 1
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &1261589430
 Transform:
@@ -17755,9 +17755,9 @@ MonoBehaviour:
   - {fileID: 1931106427}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &1696929154
 Transform:
@@ -21894,9 +21894,9 @@ MonoBehaviour:
   - {fileID: 2086497239}
   _color: {r: 0, g: 0, b: 0, a: 0}
   isRing: 0
-  timeGap: 0
+  timeGap: 10
   timeSinceLastSpawn: 0
-  trainSpeed: 0
+  trainSpeed: 10
   trainSpeedMultiplier: 0
 --- !u!4 &2122187689
 Transform:
