@@ -17,11 +17,10 @@ public class LineShow : MonoBehaviour
         for(int i = 0; i < line.stations.Count; i++) {
             lineRenderer.SetPosition(i, line.stations[i].transform.position);
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (line.isRing)
+        {
+            lineRenderer.loop = true;
+        }
     }
 }

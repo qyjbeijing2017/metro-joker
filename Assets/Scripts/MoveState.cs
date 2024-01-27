@@ -15,6 +15,11 @@ public class MoveState
 
     public bool IsAtTerminal()
     {
+        if (line.isRing)
+        {
+            return false;
+        }
+
         var index = line.stations.IndexOf(station);
         var isEnd = reverse && index == 0 || !reverse && index == line.stations.Count - 1;
         return isEnd;

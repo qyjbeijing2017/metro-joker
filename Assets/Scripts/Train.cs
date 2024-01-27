@@ -7,7 +7,7 @@ public class Train : MonoBehaviour
 {
     public Line line;
     public Transform child;
-    public List<IRoleBase> passangers = new();
+    public List<IRoleBase> roles = new();
 
     public MoveState _c;
 
@@ -184,18 +184,19 @@ public class Train : MonoBehaviour
         next = state;
         if (ShouldRecycle())
         {
+            onReachStation.Invoke(true);
             return;
         }
 
         CacheDistanceAndDirection();
         KickPassengersStaying();
         CollectPassengers();
+        onReachStation.Invoke(false);
     }
 
     private bool ShouldRecycle()
     {
         var isEnd = current.IsAtTerminal();
-        onReachStation.Invoke(isEnd);
         if (!isEnd || line.isRing)
             return false;
         ObjectPool.Push("train", this);
@@ -208,33 +209,48 @@ public class Train : MonoBehaviour
         var roles = current.station.GetRoles(next.line, next.reverse);
         foreach (var role in roles)
         {
-            role.train = this;
-            role.GetOn();
-            passangers.Add(role);
+            role.EnterTrain(this);
         }
+    }
+
+    public void AddRole(IRoleBase role)
+    {
+        if (roles.Contains(role))
+        {
+            Debug.LogError("Already contains role");
+            return;
+        }
+
+        roles.Add(role);
+    }
+
+    public void RemoveRole(IRoleBase role)
+    {
+        if (!roles.Contains(role))
+        {
+            Debug.LogError("Not contains role");
+            return;
+        }
+
+        roles.Remove(role);
     }
 
     private void KickPassengersStaying()
     {
-        foreach (var p in passangers)
+        for (var i = roles.Count - 1; i >= 0; i--)
         {
-            if (p.current.stay)
-            {
-                p.GetOff(current.station);
-                p.train = null;
-                passangers.Remove(p);
-            }
+            var p = roles[i];
+            if (!p.willStay)
+                continue;
+            p.EnterStation(current.station);
         }
     }
 
     private void KickAllPassengers()
     {
-        foreach (var p in passangers)
+        foreach (var p in roles)
         {
-            p.GetOff(current.station);
-            p.train = null;
+            p.EnterStation(current.station);
         }
-
-        passangers.Clear();
     }
 }

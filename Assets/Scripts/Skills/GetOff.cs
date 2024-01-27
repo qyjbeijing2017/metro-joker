@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GetOff : Skill
@@ -24,7 +22,7 @@ public class GetOff : Skill
             if (jocker.gameObject == gameObject) continue;
             if (Vector3.Distance(transform.position, jocker.transform.position) < getOffDistance)
             {
-                jocker.next.stay = true;
+                jocker.willStay = true;
             }
         }
         return true;

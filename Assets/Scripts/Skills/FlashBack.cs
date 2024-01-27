@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Roles;
 using UnityEngine;
 
 public class FlashBack : Skill
@@ -29,7 +26,7 @@ public class FlashBack : Skill
                 // policeman.current.station = policeBeacon.station;
 
                 // policeBeacon.Set(policeman.current.station, roleId);
-                (policeman as IRoleBase).GetOff(policeBeacon.station);
+                (policeman as IRoleBase).EnterStation(policeBeacon.station);
                 policeBeacon.enabled = false;
             }
             return true;
