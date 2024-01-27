@@ -89,6 +89,7 @@
     <Compile Include="Assets/Scripts/GamePlay.cs" />
     <Compile Include="Assets/Scripts/LineShow.cs" />
     <Compile Include="Assets/Scripts/ExitGate.cs" />
+    <Compile Include="Assets/Scripts/PlayerReborn.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

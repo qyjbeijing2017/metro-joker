@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Station))]
 public class Task : MonoBehaviour
 {
     Station station;

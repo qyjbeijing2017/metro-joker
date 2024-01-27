@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Station))]
-public class ExitGate : MonoBehaviour
+public class PlayerReborn : MonoBehaviour
 {
+    [SerializeField]
+    GameObject player;
     private Station station;
     // Start is called before the first frame update
     void Start()
     {
-        station = GetComponentInParent<Station>();
+        station = GetComponent<Station>();
+        player.GetComponent<IRoleBase>().GetOff(station);
     }
 
     // Update is called once per frame
