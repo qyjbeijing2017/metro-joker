@@ -35,6 +35,7 @@ public class GamePlay : MonoBehaviour
         taskFinishedCount++;
         if (taskFinishedCount == tasks.Count)
         {
+            Debug.Log("Game Finished");
             exitGates.ForEach(gate => gate.gameObject.SetActive(true));
             tasks.ForEach(task => task.gameObject.SetActive(false));
         }
