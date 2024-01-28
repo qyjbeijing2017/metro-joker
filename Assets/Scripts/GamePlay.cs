@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.iOS;
@@ -22,12 +23,13 @@ public class GamePlay : MonoBehaviour
     {
         jokers = new List<Jocker>(FindObjectsOfType<Jocker>());
         police = new List<Policeman>(FindObjectsOfType<Policeman>());
-        tasks = new List<Task>(FindObjectsOfType<Task>());
+        tasks = new List<Task>(FindObjectsOfType<Task>().Where(task => task.enabled));
         exitGates = new List<ExitGate>(FindObjectsOfType<ExitGate>());
         exitGates.ForEach(gate => gate.gameObject.SetActive(false));
         tasks.ForEach(task => task.OnTaskFinished += OnTaskFinished);
         exitGates.ForEach(gate => gate.onExit += OnExit);
         police.ForEach(p => p.GetComponent<CatchJocker>().OnJockerCaught += OnJockerCaught);
+        Debug.Log("Task: " + tasks.Count);
     }
 
     void OnTaskFinished()
@@ -35,9 +37,9 @@ public class GamePlay : MonoBehaviour
         taskFinishedCount++;
         if (taskFinishedCount == tasks.Count)
         {
-            Debug.Log("Game Finished");
-            exitGates.ForEach(gate => gate.gameObject.SetActive(true));
-            tasks.ForEach(task => task.gameObject.SetActive(false));
+            // exitGates.ForEach(gate => gate.gameObject.SetActive(true));
+            // tasks.ForEach(task => task.gameObject.SetActive(false));
+            OnExit();
         }
     }
 
@@ -46,6 +48,7 @@ public class GamePlay : MonoBehaviour
         caughtJockers.Add(jocker);
         if (caughtJockers.Count == jokers.Count)
         {
+            Debug.Log("Game Finished");
             OnGameFinished(false);
         }
     }
