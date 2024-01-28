@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class GetOff : Skill
 {
-    [SerializeField]
-    [Range(0, 100)]
-    private float getOffDistance = 10f;
+    [SerializeField] [Range(0, 100)] private float getOffDistance = 10f;
 
     private Policeman[] polices;
+    protected override string vidName => "off";
 
     void Start()
     {
@@ -16,7 +15,6 @@ public class GetOff : Skill
 
     public override bool UseSkill()
     {
-
         foreach (Policeman police in polices)
         {
             if (police == null) continue;
@@ -26,7 +24,7 @@ public class GetOff : Skill
                 police.willStay = true;
             }
         }
+
         return true;
     }
-
 }

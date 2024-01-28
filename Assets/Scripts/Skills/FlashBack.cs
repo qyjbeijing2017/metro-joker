@@ -6,6 +6,7 @@ public class FlashBack : Skill
     private PoliceBeacon policeBeacon;
     private Policeman policeman;
     private int roleId;
+    protected override string vidName => "teleport";
 
 
     protected void Start()

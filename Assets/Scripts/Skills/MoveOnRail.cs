@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveOnRail : Skill
 {
+    protected override string vidName => "run";
+    
     public override bool UseSkill()
     {
         throw new System.NotImplementedException();
