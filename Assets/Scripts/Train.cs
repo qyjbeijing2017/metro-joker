@@ -8,37 +8,13 @@ public class Train : MonoBehaviour
     public Line line;
     public Transform child;
     public List<IRoleBase> roles = new();
-
-    // public MoveState _c;
-
     public MoveState current;
-    // {
-    //     get => _c;
-    //     set
-    //     {
-    //         _c = value;
-    //         // Debug.Log("set current " + value);
-    //     }
-    // }
-
     private Vector3 posCur;
-
-    // public MoveState _n;
-
     public MoveState next;
-    // {
-    //     get => _n;
-    //     set
-    //     {
-    //         _n = value;
-    //         // Debug.Log("set next " + value);
-    //     }
 
     public Vector3 posNext;
     public float distance;
     public Vector3 direction;
-    public float speed = 1;
-    public float speedMultiplier;
     public UnityEvent<bool> onReachStation = new();
 
     public void Spawn(Line line, MoveState start)
@@ -46,20 +22,12 @@ public class Train : MonoBehaviour
         this.line = line;
         current = start;
         next = line.GetNextMoveState(start, out var state) ? state : null;
-        speed = line.trainSpeed;
-        speedMultiplier = line.trainSpeedMultiplier;
         CacheDistanceAndDirection();
         CollectPassengers();
         // Debug.Log($"Spawn on station {start.station.name}");
         transform.SetParent(line.transform);
         transform.position = current.station.transform.position;
         onReachStation.RemoveAllListeners();
-    }
-
-
-    public void SetSpeedMultiplier(float multiplier)
-    {
-        speedMultiplier = multiplier;
     }
 
     private void OnEnable()
@@ -76,7 +44,7 @@ public class Train : MonoBehaviour
     {
         var selfTransform = transform;
         var remainingDistance = Vector3.Distance(selfTransform.position, posNext);
-        var moveDistance = speed * (speedMultiplier + 1) * dt;
+        var moveDistance = line.trainSpeed * (line.trainSpeedMultiplier + 1) * dt;
         if (remainingDistance <= moveDistance)
         {
             OnReachStation();
