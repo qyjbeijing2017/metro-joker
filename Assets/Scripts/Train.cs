@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Train : MonoBehaviour
 {
     public Line line;
-    public Transform child;
+    public MeshRenderer mr;
     public List<IRoleBase> roles = new();
     public MoveState current;
     private Vector3 posCur;
@@ -20,6 +20,7 @@ public class Train : MonoBehaviour
     public void Spawn(Line line, MoveState start)
     {
         this.line = line;
+        mr.sharedMaterial = line.material;
         current = start;
         next = line.GetNextMoveState(start, out var state) ? state : null;
         CacheDistanceAndDirection();

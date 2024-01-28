@@ -31,17 +31,12 @@ public class LineInspector : Editor
 
     private void GenData(Line l)
     {
+        l.material = l.GetComponent<LineRenderer>().sharedMaterial;
         foreach (var s in l.stations)
         {
             s.AddLine(l);
         }
 
-        foreach (var t in l.trains)
-        {
-            ObjectPool.Push("train", t);
-        }
-
-        l.trains.Clear();
         var distanceBetweenTrains = l.timeGap * l.trainSpeed;
         // add all distances between stations
         var totalDistance = 0f;

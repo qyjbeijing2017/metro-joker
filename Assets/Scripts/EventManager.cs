@@ -45,4 +45,5 @@ public enum EventName
     RoleLeaveStation,
     RoleEnterTrain,
     RoleLeaveTrain,
+    PlaySkill
 }
