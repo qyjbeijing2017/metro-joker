@@ -93,6 +93,8 @@
     <Compile Include="Assets/Scripts/ObjectPool.cs" />
     <Compile Include="Assets/Scripts/LineShow.cs" />
     <Compile Include="Assets/Scripts/Skills/GetOff.cs" />
+    <Compile Include="Assets/Scripts/PoolRoot.cs" />
+    <Compile Include="Assets/Scripts/UI/OnWin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
