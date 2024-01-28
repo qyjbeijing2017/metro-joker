@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class SkillVideoPlayer : MonoBehaviour
@@ -10,7 +9,8 @@ public class SkillVideoPlayer : MonoBehaviour
     private Queue<string> videosToPlay = new();
     [SerializeField] private VideoPlayer player;
     [SerializeField] private float fadeInTime = 0.5f;
-    [SerializeField] private RawImage image;
+    [SerializeField] private CanvasGroup cg;
+    [SerializeField] private VideoClip[] clips;
 
     private void Start()
     {
@@ -20,14 +20,14 @@ public class SkillVideoPlayer : MonoBehaviour
     private void OnVideoEnd(VideoPlayer source)
     {
         source.Stop();
-        TryPlayNext();
+        StartCoroutine(Tween(false));
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlaySkill("");
+            PlaySkill("run");
         }
     }
 
@@ -43,6 +43,8 @@ public class SkillVideoPlayer : MonoBehaviour
 
     private void PlaySkill(string name)
     {
+        if (clips.All(i => i.name != name))
+            return;
         videosToPlay.Enqueue(name);
         TryPlayNext();
     }
@@ -55,30 +57,37 @@ public class SkillVideoPlayer : MonoBehaviour
         if (videosToPlay.Count <= 0)
             return;
 
-        var str = videosToPlay.Dequeue();
-        player.clip = Resources.Load<VideoClip>($"videos/{str}");
+        StartCoroutine(Tween(true));
     }
 
     private IEnumerator Tween(bool isIn)
     {
-        var start = isIn ? new Color(1, 1, 1, 0) : Color.white;
-        var end = isIn ? Color.white : new Color(1, 1, 1, 0);
-        image.color = start;
+        var start = isIn ? 0 : 1;
+        var end = isIn ? 1 : 0;
+        cg.alpha = start;
+        if (isIn)
+        {
+            TimeManager.SetTimeScale(0);
+        }
+
         float counter = fadeInTime;
         while (counter > 0)
         {
             counter -= Time.deltaTime;
-            image.color = Color.Lerp(start, end, 1 - counter / fadeInTime);
+            cg.alpha = Mathf.Lerp(start, end, 1 - counter / fadeInTime);
             yield return null;
         }
 
-        image.color = end;
+        cg.alpha = end;
         if (!isIn)
         {
             TryPlayNext();
+            TimeManager.SetTimeScale(1);
         }
         else
         {
+            var str = videosToPlay.Dequeue();
+            player.clip = clips.First(i => i.name == str);
             player.Play();
         }
     }
