@@ -67,4 +67,9 @@ public class ObjectPool
             Push(key, obj);
         }
     }
+    
+    public static void Reset()
+    {
+        pools.Clear();
+    }
 }

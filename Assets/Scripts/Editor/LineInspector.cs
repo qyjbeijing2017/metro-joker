@@ -11,7 +11,14 @@ public class LineInspector : Editor
         // add button
         if (GUILayout.Button("填充站点数据和路径"))
         {
-            ObjectPool.Collect<Train>("train");
+            // ObjectPool.Collect<Train>("train");
+            ObjectPool.Reset();
+
+            var cars = GameObject.FindObjectsOfType<Train>();
+            foreach (var c in cars)
+            {
+                Destroy(c.gameObject);
+            }
 
             var stations = GameObject.FindObjectsOfType<Station>();
             foreach (var s in stations)
