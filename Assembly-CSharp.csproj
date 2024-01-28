@@ -67,7 +67,7 @@
     <Compile Include="Assets\Scripts\Skills\Skill.cs" />
     <Compile Include="Assets\Scripts\ExitGate.cs" />
     <Compile Include="Assets\Scripts\UI\UITaskTime.cs" />
-    <Compile Include="Assets\Scripts\Roles\Jocker.cs" />
+    <Compile Include="Assets\Scripts\Roles\Joker.cs" />
     <Compile Include="Assets\Scripts\Roles\PoliceBeacon.cs" />
     <Compile Include="Assets\Scripts\Roles\IRoleBase.cs" />
     <Compile Include="Assets\Scripts\UI\OnWin.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\LineShow.cs" />
     <Compile Include="Assets\Scripts\Skills\GetOff.cs" />
+    <Compile Include="Assets\Scripts\Roles\Arrow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

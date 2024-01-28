@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour
 {
     public void OnStart(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("20240127");
     }
 
     public void OnAbout(){
