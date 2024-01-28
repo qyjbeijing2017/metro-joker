@@ -24,6 +24,7 @@ public class OnWin : MonoBehaviour
 
     void OnGameFinished(bool jockerWin)
     {
+        Debug.Log("Game Finished!!!");
         if (jockerWin)
         {
             this.jockerWin.gameObject.SetActive(true);
