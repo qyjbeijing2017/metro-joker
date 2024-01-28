@@ -206,9 +206,11 @@ MonoBehaviour:
   fadeInTime: 0.5
   cg: {fileID: 273673604307965037}
   clips:
-  - {fileID: 32900000, guid: fd01cdb85cff5451e97518c91ecb66f7, type: 3}
-  - {fileID: 32900000, guid: 57f866dd6b9b74c9c902d1e6d7acb245, type: 3}
-  - {fileID: 32900000, guid: d1d62112e30774ff2a04408fab1c057c, type: 3}
+  - {fileID: 32900000, guid: 7a665dffa238f449f9740a4b92c7f7b4, type: 3}
+  - {fileID: 32900000, guid: e530dc1d7ca0b44908ebb52bd995a0f4, type: 3}
+  - {fileID: 32900000, guid: 0e6c96285bed6486c8b80ee243e95b68, type: 3}
+  - {fileID: 32900000, guid: 6878d1330896b46a8a899ba674119d01, type: 3}
+  - {fileID: 32900000, guid: 47fda45105f554940b8554d52b6a32aa, type: 3}
 --- !u!328 &3803510950110097152
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -252,7 +254,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7652965646471959066}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
