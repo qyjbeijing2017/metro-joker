@@ -9,18 +9,21 @@ public class UICoolDown : MonoBehaviour
 {
     [SerializeField]
     private int PlayerID;
+    [SerializeField]
     Image image;
     Skill skill;
+
+    Jocker jocker;
     // Start is called before the first frame update
     void Start()
     {
-        image = GetComponent<Image>();
         var inputs = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
         foreach (var input in inputs)
         {
             if (input.playerID == PlayerID)
             {
                 skill = input.GetComponent<Skill>();
+                jocker = input.GetComponent<Jocker>();
                 break;
             }
         }
@@ -29,6 +32,14 @@ public class UICoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(skill == null)
+        {
+            return;
+        }
         image.fillAmount = skill.currentCoolDown / skill.maxCoolDown;
+        if(jocker && jocker.wasArrested) {
+            image.fillAmount = 1f;
+        }
     }
 }
+ 

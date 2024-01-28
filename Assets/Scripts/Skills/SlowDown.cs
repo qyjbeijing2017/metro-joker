@@ -17,7 +17,7 @@ public class SlowDown : Skill
 
         if(policeman.train)
         {
-            Debug.Log("¼õËÙ");
+            Debug.Log("use slow down");
             policeman.train.line.SetSpeedMultiplier(slowDownMultiplier);
             policeman.train.onReachStation.AddListener(onDock);
             slowDownCount = 0;
@@ -27,18 +27,18 @@ public class SlowDown : Skill
     }
 
     void onDock(bool isTerminal) {
-        Debug.Log("½øÕ¾");
+        Debug.Log("onDock");
         if(isTerminal) {
             slowDownCount = 0;
             policeman.train.line.SetSpeedMultiplier(1f);
             policeman.train.onReachStation.RemoveListener(onDock);
-            Debug.Log("»Ö¸´");
+            Debug.Log("onTerminal");
         } else {
             slowDownCount++;
             if(slowDownCount >= slowDownTimes) {
                 policeman.train.line.SetSpeedMultiplier(1f);
                 policeman.train.onReachStation.RemoveListener(onDock);
-                Debug.Log("»Ö¸´");
+                Debug.Log("OnSlowDownEnd");
             }
         }
     }
