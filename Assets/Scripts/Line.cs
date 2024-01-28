@@ -60,10 +60,6 @@ public class Line : MonoBehaviour
     public void SetSpeedMultiplier(float multiplier)
     {
         trainSpeedMultiplier = multiplier;
-        foreach (var train in trains)
-        {
-            train.SetSpeedMultiplier(multiplier);
-        }
     }
 
     public void AddTrain(Train train)
