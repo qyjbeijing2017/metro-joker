@@ -61,8 +61,8 @@ public class SkillVideoPlayer : MonoBehaviour
 
     private IEnumerator Tween(bool isIn)
     {
-        var start = isIn ? Color.clear : Color.white;
-        var end = isIn ? Color.white : Color.clear;
+        var start = isIn ? new Color(1, 1, 1, 0) : Color.white;
+        var end = isIn ? Color.white : new Color(1, 1, 1, 0);
         image.color = start;
         float counter = fadeInTime;
         while (counter > 0)
