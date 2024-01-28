@@ -42,6 +42,8 @@ public class InputManager : MonoBehaviour
 
     public Vector2 direction{
         get{
+
+
             if(useKeyBoard) {
                 Vector2 dir = Vector2.zero;
                 if (Keyboard.current[up].isPressed)
@@ -68,6 +70,7 @@ public class InputManager : MonoBehaviour
             {
                 return Vector2.zero;
             }
+
             if(GetOnAxis == GamepadButton.LeftStick)
             return Gamepad.all[PlayerID].leftStick.ReadValue();
             else if(GetOnAxis == GamepadButton.RightStick)
@@ -79,14 +82,17 @@ public class InputManager : MonoBehaviour
 
     public bool getOff{
         get{
+
+            
+            if(useKeyBoard) {
+                return Keyboard.current[getoff].wasPressedThisFrame;
+            }
+
             if(PlayerID + 1 > Gamepad.all.Count)
             {
                 return false;
             }
 
-            if(useKeyBoard) {
-                return Keyboard.current[getoff].wasPressedThisFrame;
-            }
 
 
 
@@ -96,14 +102,17 @@ public class InputManager : MonoBehaviour
 
     public bool Skill{
         get{
+
+            if(useKeyBoard) {
+                return Keyboard.current[skill].wasPressedThisFrame;
+            }
+
             if(PlayerID + 1 > Gamepad.all.Count)
             {
                 return false;
             }
 
-            if(useKeyBoard) {
-                return Keyboard.current[skill].wasPressedThisFrame;
-            }
+
             
             return Gamepad.all[PlayerID][SkillButton].wasPressedThisFrame;
         }
