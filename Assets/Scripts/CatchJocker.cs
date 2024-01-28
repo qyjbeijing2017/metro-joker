@@ -31,7 +31,7 @@ public class CatchJocker : MonoBehaviour
             {
                 continue;
             }
-            if (Vector2.Distance(transform.position, jocker.transform.position) < catchDistance)
+            if (Vector3.Distance(transform.position, jocker.transform.position) < catchDistance)
             {
                 jocker.wasArrested = true;
                 jocker.gameObject.SetActive(false);
