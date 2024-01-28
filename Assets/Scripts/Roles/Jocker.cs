@@ -9,6 +9,8 @@ public class Jocker : MonoBehaviour, IRoleBase
     public bool willStay { get; set; }
     public bool wasArrested { get; set; } = false;
 
+    
+
 
     public void Tick(float dt)
     {
