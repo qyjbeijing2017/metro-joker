@@ -10,6 +10,8 @@ public class LockStation : Skill
 
     float lockTimeLeft = 0f;
 
+    protected override string vidName => "stuck";
+
     public override bool UseSkill()
     {
         if(!_joker.train && !_joker.station.IsOnlyTerminal()) {

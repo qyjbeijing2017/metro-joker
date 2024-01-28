@@ -10,7 +10,7 @@ public class SlowDown : Skill
     float slowDownMultiplier = 0.5f;
 
     int slowDownCount = 0;
-
+    protected override string vidName => "poison";
 
     public override bool UseSkill()
     {
