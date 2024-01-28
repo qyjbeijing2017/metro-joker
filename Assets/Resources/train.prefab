@@ -46,7 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 0}
-  child: {fileID: 0}
+  mr: {fileID: 7094203892478234899}
+  current:
+    line: {fileID: 0}
+    station: {fileID: 0}
+    reverse: 0
+    stay: 0
+  next:
+    line: {fileID: 0}
+    station: {fileID: 0}
+    reverse: 0
+    stay: 0
+  posNext: {x: 0, y: 0, z: 0}
+  distance: 0
+  direction: {x: 0, y: 0, z: 0}
   onReachStation:
     m_PersistentCalls:
       m_Calls: []

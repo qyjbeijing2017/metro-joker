@@ -4,13 +4,12 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     public List<Station> stations = new();
-    [SerializeField] private Color _color;
-    public HashSet<Train> trains = new();
     public bool isRing;
     public float timeGap;
     public float timeSinceLastSpawn;
     public float trainSpeed;
     public float trainSpeedMultiplier = 0;
+    public Material material;
 
     private void OnEnable()
     {
@@ -47,7 +46,6 @@ public class Line : MonoBehaviour
             station = stations[0],
             reverse = false,
         });
-
         var r = ObjectPool.Pop<Train>("train");
         r.Spawn(this, new MoveState
         {
@@ -60,24 +58,6 @@ public class Line : MonoBehaviour
     public void SetSpeedMultiplier(float multiplier)
     {
         trainSpeedMultiplier = multiplier;
-    }
-
-    public void AddTrain(Train train)
-    {
-        trains.Add(train);
-    }
-
-    public void RemoveTrain(Train train)
-    {
-        trains.Remove(train);
-    }
-
-    public void Init()
-    {
-        foreach (var s in stations)
-        {
-            s.AddLine(this);
-        }
     }
 
     public bool GetNextMoveState(MoveState curState, out MoveState newState)
