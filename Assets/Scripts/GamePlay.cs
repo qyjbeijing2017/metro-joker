@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.iOS;
 
 public class GamePlay : MonoBehaviour
@@ -13,6 +14,8 @@ public class GamePlay : MonoBehaviour
 
     private int taskFinishedCount = 0;
 
+    public UnityAction<bool> OnGameFinished;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,7 @@ public class GamePlay : MonoBehaviour
         police = new List<Policeman>(FindObjectsOfType<Policeman>());
         tasks = new List<Task>(FindObjectsOfType<Task>());
         exitGates = new List<ExitGate>(FindObjectsOfType<ExitGate>());
-        exitGates.ForEach(gate => gate.enabled = false);
+        exitGates.ForEach(gate => gate.gameObject.SetActive(false));
         tasks.ForEach(task => task.OnTaskFinished += OnTaskFinished);
         exitGates.ForEach(gate => gate.onExit += OnExit);
         police.ForEach(p => p.GetComponent<CatchJocker>().OnJockerCaught += OnJockerCaught);
@@ -32,7 +35,8 @@ public class GamePlay : MonoBehaviour
         taskFinishedCount++;
         if (taskFinishedCount == tasks.Count)
         {
-            exitGates.ForEach(gate => gate.enabled = true);
+            exitGates.ForEach(gate => gate.gameObject.SetActive(true));
+            tasks.ForEach(task => task.gameObject.SetActive(false));
         }
     }
 
@@ -41,13 +45,13 @@ public class GamePlay : MonoBehaviour
         caughtJockers.Add(jocker);
         if (caughtJockers.Count == jokers.Count)
         {
-            Debug.Log("Police Win");
+            OnGameFinished(false);
         }
     }
 
 
     void OnExit() {
-        Debug.Log("Jocker Win");
+        OnGameFinished(true);
     }
 
     // Update is called once per frame
