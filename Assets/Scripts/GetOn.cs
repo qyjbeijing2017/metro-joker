@@ -29,11 +29,11 @@ public class GetOn : MonoBehaviour
         if (player.train != null && inputManager.getOff)
         {
             player.willStay = true;
+            player.arrow.Hide();
             return;
         }
         if (player.train == null && inputManager.direction.magnitude > deathArea)
         {
-
             foreach (var line in player.station.lines)
             {
                 var dir = getDirection(line, false);
@@ -43,6 +43,7 @@ public class GetOn : MonoBehaviour
                     if (angle < marchAngle && angle > -marchAngle)
                     {
                         player.SetNext(line, false);
+                        player.arrow.Show(dir);
                         return;
                     }
                 }
@@ -53,14 +54,21 @@ public class GetOn : MonoBehaviour
                     if (angle < marchAngle && angle > -marchAngle)
                     {
                         player.SetNext(line, true);
+                        player.arrow.Show(dir);
                         return;
                     }
                 }
             }
+            player.arrow.Show(inputManager.direction);
+        }
+        else
+        {
+            player.arrow.Hide();
         }
         if (player.train == null && inputManager.getOff)
         {
             player.line = null;
+            player.arrow.Hide();
         }
     }
 
