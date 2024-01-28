@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LockStation : Skill
 {
-    Jocker jocker;
+    Joker _joker;
     [SerializeField]
     float lockTime = 5f;
 
@@ -12,8 +12,8 @@ public class LockStation : Skill
 
     public override bool UseSkill()
     {
-        if(!jocker.train && !jocker.station.IsOnlyTerminal()) {
-            jocker.station.SetStuck(true);
+        if(!_joker.train && !_joker.station.IsOnlyTerminal()) {
+            _joker.station.SetStuck(true);
             lockTimeLeft = lockTime;
             return true;
         }
@@ -24,7 +24,7 @@ public class LockStation : Skill
     void Start()
     {
         base.Start();
-        jocker = GetComponent<Jocker>();
+        _joker = GetComponent<Joker>();
         
     }
 
@@ -34,7 +34,7 @@ public class LockStation : Skill
         if(lockTimeLeft > 0f) {
             lockTimeLeft -= deltaTime;
             if(lockTimeLeft <= 0f) {
-                jocker.station.SetStuck(false);
+                _joker.station.SetStuck(false);
             }
         }
         

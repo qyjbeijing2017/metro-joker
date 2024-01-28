@@ -15,7 +15,7 @@ public class ExitGate : MonoBehaviour
 
         EventManager.RegisterCallback<(Station, IRoleBase)>(EventName.RoleEnterStation, (e) =>
         {
-            if (e.Item1 == station && e.Item2 is Jocker)
+            if (e.Item1 == station && e.Item2 is Joker)
             {
                 onExit?.Invoke();
             }

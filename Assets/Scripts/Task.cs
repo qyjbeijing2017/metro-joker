@@ -63,7 +63,7 @@ public class Task : MonoBehaviour
         if (isFinished) return;
         foreach (IRoleBase role in station.roles)
         {
-            if (role is Jocker)
+            if (role is Joker)
             {
                 ArriveTime += deltaTime;
                 isRunning = true;

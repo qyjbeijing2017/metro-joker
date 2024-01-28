@@ -6,12 +6,12 @@ using UnityEngine.InputSystem.iOS;
 
 public class GamePlay : MonoBehaviour
 {
-    private List<Jocker> jokers;
+    private List<Joker> jokers;
     private List<Policeman> police;
     private List<Task> tasks;
     private List<ExitGate> exitGates;
 
-    private List<Jocker> caughtJockers = new List<Jocker>();
+    private List<Joker> caughtJockers = new List<Joker>();
 
     private int taskFinishedCount = 0;
 
@@ -21,7 +21,7 @@ public class GamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        jokers = new List<Jocker>(FindObjectsOfType<Jocker>());
+        jokers = new List<Joker>(FindObjectsOfType<Joker>());
         police = new List<Policeman>(FindObjectsOfType<Policeman>());
         tasks = new List<Task>(FindObjectsOfType<Task>().Where(task => task.enabled));
         exitGates = new List<ExitGate>(FindObjectsOfType<ExitGate>());
@@ -43,9 +43,9 @@ public class GamePlay : MonoBehaviour
         }
     }
 
-    void OnJockerCaught(Jocker jocker)
+    void OnJockerCaught(Joker joker)
     {
-        caughtJockers.Add(jocker);
+        caughtJockers.Add(joker);
         if (caughtJockers.Count == jokers.Count)
         {
             Debug.Log("Game Finished");

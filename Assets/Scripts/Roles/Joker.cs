@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Jocker : MonoBehaviour, IRoleBase
+public class Joker : MonoBehaviour, IRoleBase
 {
     public Train train { get; set; }
     public Station station { get; set; }
@@ -9,8 +9,8 @@ public class Jocker : MonoBehaviour, IRoleBase
     public bool willStay { get; set; }
     public bool wasArrested { get; set; } = false;
 
-    
-
+    [SerializeField] private Arrow _arrow;
+    public Arrow arrow => _arrow;
 
     public void Tick(float dt)
     {

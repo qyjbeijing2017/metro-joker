@@ -8,6 +8,9 @@ public class Policeman : MonoBehaviour, IRoleBase
     public bool reverse { get; set; }
     public bool willStay { get; set; }
 
+    [SerializeField] private Arrow _arrow;
+    public Arrow arrow => _arrow;
+
     public void Tick(float dt)
     {
     }

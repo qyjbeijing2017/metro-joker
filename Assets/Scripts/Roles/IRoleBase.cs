@@ -8,6 +8,7 @@ public interface IRoleBase
     public bool reverse { get; set; }
     public bool willStay { get; set; }
     public Transform t => (this as MonoBehaviour).transform;
+    public Arrow arrow { get; }
 
     public void Tick(float dt);
 
@@ -51,6 +52,7 @@ public interface IRoleBase
         var trans = t;
         trans.SetParent(train.transform);
         trans.localPosition = Vector3.zero;
+        arrow.Hide();
     }
 
     public void SetNext(Line line, bool reverse)

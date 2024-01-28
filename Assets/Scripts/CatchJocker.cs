@@ -6,19 +6,19 @@ using UnityEngine.Events;
 public class CatchJocker : MonoBehaviour
 {
     private Policeman role;
-    private List<Jocker> enemy;
+    private List<Joker> enemy;
     [SerializeField]
     [Range(0, 10)]
     private float catchDistance = 5f;
 
-    public UnityAction<Jocker> OnJockerCaught;
+    public UnityAction<Joker> OnJockerCaught;
 
     // Start is called before the first frame update
     void Start()
     {
         
         role = GetComponent<Policeman>();
-        enemy = new List<Jocker>(FindObjectsOfType<Jocker>());
+        enemy = new List<Joker>(FindObjectsOfType<Joker>());
 
     }
 

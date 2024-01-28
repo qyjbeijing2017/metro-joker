@@ -13,7 +13,7 @@ public class UICoolDown : MonoBehaviour
     Image image;
     Skill skill;
 
-    Jocker jocker;
+    Joker _joker;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class UICoolDown : MonoBehaviour
             if (input.playerID == PlayerID)
             {
                 skill = input.GetComponent<Skill>();
-                jocker = input.GetComponent<Jocker>();
+                _joker = input.GetComponent<Joker>();
                 break;
             }
         }
@@ -37,7 +37,7 @@ public class UICoolDown : MonoBehaviour
             return;
         }
         image.fillAmount = skill.currentCoolDown / skill.maxCoolDown;
-        if(jocker && jocker.wasArrested) {
+        if(_joker && _joker.wasArrested) {
             image.fillAmount = 1f;
         }
     }
